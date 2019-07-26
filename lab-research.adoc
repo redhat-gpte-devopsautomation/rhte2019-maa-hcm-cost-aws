@@ -1,0 +1,48 @@
+== RHTE 2019 - Hybrid Cloud Management - OCP, Cost, and AWS
+
+=== Infra
+
+|===
+| Ops Step | Actor | Env Dev Done
+
+|OCP4 default deployment per student
+|cloudforms + agnosticd
+|
+
+|add OCP4 cluster to collector
+|agnosticd + collector on admin host
+| *No*
+** https://koku.readthedocs.io/en/latest/providers.html#adding-an-ocp-provider
+
+|OCP4 add metering workload
+|student
+|
+
+|Koku add Source
+|student
+|
+
+|Koku Write Cost report
+|student
+|
+
+|===
+
+
+
+
+=== Cost integration automation
+
+* Run on admin server with cluster creds
+* setup cron job
+
+=== Lab Instructions
+
+Goals:
+
+* Deploy OCP4 Env
+* Setup metering
+* setup koku source
+* Write cost report
+
+
