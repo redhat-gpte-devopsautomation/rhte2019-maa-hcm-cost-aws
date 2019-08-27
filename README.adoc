@@ -1,6 +1,8 @@
 = Red Hat Tech Exchange 2019
 
-== A2003 Hybrid Cloud Management - Cost Management on AWS - rhte2019-maa-hcm-cost-aws
+== A2003 Hybrid Cloud Management - Cost Management on AWS
+
+`rhte2019-maa-hcm-cost-aws`
 
 Welcome to the 2019 HCM Cost Management with OpenShift and AWS Lab
 
