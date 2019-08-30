@@ -40,9 +40,18 @@
 
 Goals:
 
-* Deploy OCP4 Env
-* Setup metering
+* setup metering on ocp4 cluster
 * setup koku source
 * Write cost report
+
+=== Setup Metering on OCP4 Cluster
+
+Using the OpenShift Web Console we will add the metering operator and make sure it's functioning correctly.
+
+== New Plan
+
+* Get training org setup
+* Add 200 users
+* integrate authN authZ as necessary
 
 
