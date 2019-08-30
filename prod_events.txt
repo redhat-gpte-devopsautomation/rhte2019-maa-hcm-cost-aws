@@ -1,0 +1,549 @@
+LAST SEEN   TYPE      REASON                   OBJECT                                           MESSAGE
+3h36m       Normal    TaintManagerEviction     pod/hdfs-datanode-0                              Marking for deletion Pod openshift-metering/hdfs-datanode-0
+168m        Normal    Scheduled                pod/hdfs-datanode-0                              Successfully assigned openshift-metering/hdfs-datanode-0 to ip-10-0-130-174.us-west-2.compute.internal
+168m        Normal    SuccessfulAttachVolume   pod/hdfs-datanode-0                              AttachVolume.Attach succeeded for volume "pvc-9efba500-ca87-11e9-a248-0698e01dcbf2"
+168m        Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+168m        Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+168m        Normal    Created                  pod/hdfs-datanode-0                              Created container wait-for-namenode
+168m        Normal    Started                  pod/hdfs-datanode-0                              Started container wait-for-namenode
+167m        Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+167m        Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+167m        Normal    Created                  pod/hdfs-datanode-0                              Created container hdfs-datanode
+167m        Normal    Started                  pod/hdfs-datanode-0                              Started container hdfs-datanode
+153m        Normal    Killing                  pod/hdfs-datanode-0                              Stopping container hdfs-datanode
+150m        Normal    TaintManagerEviction     pod/hdfs-datanode-0                              Cancelling deletion of Pod openshift-metering/hdfs-datanode-0
+150m        Normal    Scheduled                pod/hdfs-datanode-0                              Successfully assigned openshift-metering/hdfs-datanode-0 to ip-10-0-142-130.us-west-2.compute.internal
+150m        Warning   FailedAttachVolume       pod/hdfs-datanode-0                              Multi-Attach error for volume "pvc-9efba500-ca87-11e9-a248-0698e01dcbf2" Volume is already exclusively attached to one node and can't be attached to another
+150m        Normal    SuccessfulAttachVolume   pod/hdfs-datanode-0                              AttachVolume.Attach succeeded for volume "pvc-9efba500-ca87-11e9-a248-0698e01dcbf2"
+149m        Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+149m        Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+149m        Normal    Created                  pod/hdfs-datanode-0                              Created container wait-for-namenode
+149m        Normal    Started                  pod/hdfs-datanode-0                              Started container wait-for-namenode
+149m        Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+149m        Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+149m        Normal    Created                  pod/hdfs-datanode-0                              Created container hdfs-datanode
+149m        Normal    Started                  pod/hdfs-datanode-0                              Started container hdfs-datanode
+139m        Normal    Killing                  pod/hdfs-datanode-0                              Stopping container hdfs-datanode
+136m        Normal    TaintManagerEviction     pod/hdfs-datanode-0                              Cancelling deletion of Pod openshift-metering/hdfs-datanode-0
+136m        Normal    Scheduled                pod/hdfs-datanode-0                              Successfully assigned openshift-metering/hdfs-datanode-0 to ip-10-0-130-174.us-west-2.compute.internal
+135m        Normal    SuccessfulAttachVolume   pod/hdfs-datanode-0                              AttachVolume.Attach succeeded for volume "pvc-9efba500-ca87-11e9-a248-0698e01dcbf2"
+135m        Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+135m        Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+135m        Normal    Created                  pod/hdfs-datanode-0                              Created container wait-for-namenode
+135m        Normal    Started                  pod/hdfs-datanode-0                              Started container wait-for-namenode
+133m        Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+133m        Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+133m        Normal    Created                  pod/hdfs-datanode-0                              Created container hdfs-datanode
+133m        Normal    Started                  pod/hdfs-datanode-0                              Started container hdfs-datanode
+62m         Normal    Killing                  pod/hdfs-datanode-0                              Stopping container hdfs-datanode
+61m         Normal    Scheduled                pod/hdfs-datanode-0                              Successfully assigned openshift-metering/hdfs-datanode-0 to ip-10-0-142-130.us-west-2.compute.internal
+60m         Normal    SuccessfulAttachVolume   pod/hdfs-datanode-0                              AttachVolume.Attach succeeded for volume "pvc-9efba500-ca87-11e9-a248-0698e01dcbf2"
+60m         Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+60m         Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+60m         Normal    Created                  pod/hdfs-datanode-0                              Created container wait-for-namenode
+60m         Normal    Started                  pod/hdfs-datanode-0                              Started container wait-for-namenode
+59m         Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+59m         Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+59m         Normal    Created                  pod/hdfs-datanode-0                              Created container hdfs-datanode
+59m         Normal    Started                  pod/hdfs-datanode-0                              Started container hdfs-datanode
+36m         Normal    Killing                  pod/hdfs-datanode-0                              Stopping container hdfs-datanode
+16m         Normal    Scheduled                pod/hdfs-datanode-0                              Successfully assigned openshift-metering/hdfs-datanode-0 to ip-10-0-143-52.us-west-2.compute.internal
+16m         Normal    SuccessfulAttachVolume   pod/hdfs-datanode-0                              AttachVolume.Attach succeeded for volume "pvc-9efba500-ca87-11e9-a248-0698e01dcbf2"
+16m         Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+16m         Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+16m         Normal    Created                  pod/hdfs-datanode-0                              Created container wait-for-namenode
+16m         Normal    Started                  pod/hdfs-datanode-0                              Started container wait-for-namenode
+15m         Normal    Pulling                  pod/hdfs-datanode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+15m         Normal    Pulled                   pod/hdfs-datanode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+15m         Normal    Created                  pod/hdfs-datanode-0                              Created container hdfs-datanode
+15m         Normal    Started                  pod/hdfs-datanode-0                              Started container hdfs-datanode
+168m        Normal    SuccessfulCreate         statefulset/hdfs-datanode                        create Pod hdfs-datanode-0 in StatefulSet hdfs-datanode successful
+150m        Normal    SuccessfulCreate         statefulset/hdfs-datanode                        create Pod hdfs-datanode-0 in StatefulSet hdfs-datanode successful
+61m         Normal    SuccessfulCreate         statefulset/hdfs-datanode                        create Pod hdfs-datanode-0 in StatefulSet hdfs-datanode successful
+36m         Normal    SuccessfulDelete         statefulset/hdfs-datanode                        delete Pod hdfs-datanode-0 in StatefulSet hdfs-datanode successful
+16m         Normal    SuccessfulCreate         statefulset/hdfs-datanode                        create Pod hdfs-datanode-0 in StatefulSet hdfs-datanode successful
+3h36m       Normal    TaintManagerEviction     pod/hdfs-namenode-0                              Marking for deletion Pod openshift-metering/hdfs-namenode-0
+168m        Normal    Scheduled                pod/hdfs-namenode-0                              Successfully assigned openshift-metering/hdfs-namenode-0 to ip-10-0-130-174.us-west-2.compute.internal
+168m        Normal    SuccessfulAttachVolume   pod/hdfs-namenode-0                              AttachVolume.Attach succeeded for volume "pvc-9f00f0f0-ca87-11e9-a248-0698e01dcbf2"
+167m        Normal    Pulling                  pod/hdfs-namenode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+167m        Normal    Pulled                   pod/hdfs-namenode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+167m        Normal    Created                  pod/hdfs-namenode-0                              Created container hdfs-namenode
+167m        Normal    Started                  pod/hdfs-namenode-0                              Started container hdfs-namenode
+153m        Normal    Killing                  pod/hdfs-namenode-0                              Stopping container hdfs-namenode
+150m        Normal    TaintManagerEviction     pod/hdfs-namenode-0                              Cancelling deletion of Pod openshift-metering/hdfs-namenode-0
+150m        Normal    Scheduled                pod/hdfs-namenode-0                              Successfully assigned openshift-metering/hdfs-namenode-0 to ip-10-0-142-130.us-west-2.compute.internal
+150m        Warning   FailedAttachVolume       pod/hdfs-namenode-0                              Multi-Attach error for volume "pvc-9f00f0f0-ca87-11e9-a248-0698e01dcbf2" Volume is already exclusively attached to one node and can't be attached to another
+150m        Normal    SuccessfulAttachVolume   pod/hdfs-namenode-0                              AttachVolume.Attach succeeded for volume "pvc-9f00f0f0-ca87-11e9-a248-0698e01dcbf2"
+149m        Normal    Pulling                  pod/hdfs-namenode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+149m        Normal    Pulled                   pod/hdfs-namenode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+149m        Normal    Created                  pod/hdfs-namenode-0                              Created container hdfs-namenode
+149m        Normal    Started                  pod/hdfs-namenode-0                              Started container hdfs-namenode
+139m        Normal    Killing                  pod/hdfs-namenode-0                              Stopping container hdfs-namenode
+136m        Normal    TaintManagerEviction     pod/hdfs-namenode-0                              Cancelling deletion of Pod openshift-metering/hdfs-namenode-0
+136m        Normal    Scheduled                pod/hdfs-namenode-0                              Successfully assigned openshift-metering/hdfs-namenode-0 to ip-10-0-130-174.us-west-2.compute.internal
+134m        Normal    SuccessfulAttachVolume   pod/hdfs-namenode-0                              AttachVolume.Attach succeeded for volume "pvc-9f00f0f0-ca87-11e9-a248-0698e01dcbf2"
+134m        Warning   FailedMount              pod/hdfs-namenode-0                              Unable to mount volumes for pod "hdfs-namenode-0_openshift-metering(486998a7-cb53-11e9-8779-02fdb1202f5a)": timeout expired waiting for volumes to attach or mount for pod "openshift-metering"/"hdfs-namenode-0". list of unmounted volumes=[hdfs-namenode-data]. list of unattached volumes=[hdfs-namenode-data hdfs-config datanode-empty hadoop-logs hdfs-token-zvls6]
+133m        Normal    Pulling                  pod/hdfs-namenode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+133m        Normal    Pulled                   pod/hdfs-namenode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+133m        Normal    Created                  pod/hdfs-namenode-0                              Created container hdfs-namenode
+133m        Normal    Started                  pod/hdfs-namenode-0                              Started container hdfs-namenode
+62m         Normal    Killing                  pod/hdfs-namenode-0                              Stopping container hdfs-namenode
+61m         Normal    Scheduled                pod/hdfs-namenode-0                              Successfully assigned openshift-metering/hdfs-namenode-0 to ip-10-0-143-52.us-west-2.compute.internal
+60m         Normal    SuccessfulAttachVolume   pod/hdfs-namenode-0                              AttachVolume.Attach succeeded for volume "pvc-9f00f0f0-ca87-11e9-a248-0698e01dcbf2"
+60m         Normal    Pulling                  pod/hdfs-namenode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+59m         Normal    Pulled                   pod/hdfs-namenode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+59m         Normal    Created                  pod/hdfs-namenode-0                              Created container hdfs-namenode
+59m         Normal    Started                  pod/hdfs-namenode-0                              Started container hdfs-namenode
+41m         Normal    Killing                  pod/hdfs-namenode-0                              Stopping container hdfs-namenode
+41m         Normal    Scheduled                pod/hdfs-namenode-0                              Successfully assigned openshift-metering/hdfs-namenode-0 to ip-10-0-143-52.us-west-2.compute.internal
+40m         Normal    Pulling                  pod/hdfs-namenode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+40m         Normal    Pulled                   pod/hdfs-namenode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+40m         Normal    Created                  pod/hdfs-namenode-0                              Created container hdfs-namenode
+40m         Normal    Started                  pod/hdfs-namenode-0                              Started container hdfs-namenode
+36m         Normal    Killing                  pod/hdfs-namenode-0                              Stopping container hdfs-namenode
+16m         Normal    Scheduled                pod/hdfs-namenode-0                              Successfully assigned openshift-metering/hdfs-namenode-0 to ip-10-0-134-21.us-west-2.compute.internal
+16m         Normal    SuccessfulAttachVolume   pod/hdfs-namenode-0                              AttachVolume.Attach succeeded for volume "pvc-9f00f0f0-ca87-11e9-a248-0698e01dcbf2"
+16m         Normal    Pulling                  pod/hdfs-namenode-0                              Pulling image "quay.io/openshift/origin-metering-hadoop:4.1"
+15m         Normal    Pulled                   pod/hdfs-namenode-0                              Successfully pulled image "quay.io/openshift/origin-metering-hadoop:4.1"
+15m         Normal    Created                  pod/hdfs-namenode-0                              Created container hdfs-namenode
+15m         Normal    Started                  pod/hdfs-namenode-0                              Started container hdfs-namenode
+168m        Normal    SuccessfulCreate         statefulset/hdfs-namenode                        create Pod hdfs-namenode-0 in StatefulSet hdfs-namenode successful
+150m        Normal    SuccessfulCreate         statefulset/hdfs-namenode                        create Pod hdfs-namenode-0 in StatefulSet hdfs-namenode successful
+41m         Normal    SuccessfulCreate         statefulset/hdfs-namenode                        create Pod hdfs-namenode-0 in StatefulSet hdfs-namenode successful
+36m         Normal    SuccessfulDelete         statefulset/hdfs-namenode                        delete Pod hdfs-namenode-0 in StatefulSet hdfs-namenode successful
+16m         Normal    SuccessfulCreate         statefulset/hdfs-namenode                        create Pod hdfs-namenode-0 in StatefulSet hdfs-namenode successful
+148m        Normal    Killing                  pod/hive-metastore-0                             Stopping container metastore
+145m        Normal    TaintManagerEviction     pod/hive-metastore-0                             Cancelling deletion of Pod openshift-metering/hive-metastore-0
+145m        Warning   FailedScheduling         pod/hive-metastore-0                             0/7 nodes are available: 2 node(s) had taints that the pod didn't tolerate, 2 node(s) were unschedulable, 3 node(s) had volume node affinity conflict.
+145m        Normal    SuccessfulAttachVolume   pod/hive-metastore-0                             AttachVolume.Attach succeeded for volume "pvc-9e42450b-ca87-11e9-a248-0698e01dcbf2"
+145m        Normal    Pulling                  pod/hive-metastore-0                             Pulling image "quay.io/openshift/origin-metering-hive:4.1"
+144m        Normal    Pulled                   pod/hive-metastore-0                             Successfully pulled image "quay.io/openshift/origin-metering-hive:4.1"
+144m        Normal    Created                  pod/hive-metastore-0                             Created container metastore
+144m        Normal    Started                  pod/hive-metastore-0                             Started container metastore
+80m         Normal    Killing                  pod/hive-metastore-0                             Stopping container metastore
+79m         Warning   FailedScheduling         pod/hive-metastore-0                             0/9 nodes are available: 2 node(s) were unschedulable, 3 node(s) had taints that the pod didn't tolerate, 4 node(s) had volume node affinity conflict.
+59m         Warning   FailedScheduling         pod/hive-metastore-0                             0/7 nodes are available: 3 node(s) had taints that the pod didn't tolerate, 4 node(s) had volume node affinity conflict.
+65m         Warning   FailedScheduling         pod/hive-metastore-0                             0/8 nodes are available: 3 node(s) had taints that the pod didn't tolerate, 5 node(s) had volume node affinity conflict.
+58m         Normal    SuccessfulAttachVolume   pod/hive-metastore-0                             AttachVolume.Attach succeeded for volume "pvc-9e42450b-ca87-11e9-a248-0698e01dcbf2"
+58m         Normal    TaintManagerEviction     pod/hive-metastore-0                             Cancelling deletion of Pod openshift-metering/hive-metastore-0
+57m         Normal    Pulling                  pod/hive-metastore-0                             Pulling image "quay.io/openshift/origin-metering-hive:4.1"
+56m         Normal    Pulled                   pod/hive-metastore-0                             Successfully pulled image "quay.io/openshift/origin-metering-hive:4.1"
+56m         Normal    Created                  pod/hive-metastore-0                             Created container metastore
+56m         Normal    Started                  pod/hive-metastore-0                             Started container metastore
+36m         Normal    Killing                  pod/hive-metastore-0                             Stopping container metastore
+16m         Normal    Scheduled                pod/hive-metastore-0                             Successfully assigned openshift-metering/hive-metastore-0 to ip-10-0-148-140.us-west-2.compute.internal
+16m         Warning   FailedAttachVolume       pod/hive-metastore-0                             AttachVolume.Attach failed for volume "pvc-f8dad6e1-cb63-11e9-a85b-0698e01dcbf2" : "Error attaching EBS volume \"vol-0123f3f1df0e985eb\"" to instance "i-053a699bc7aa6f8bf" since volume is in "creating" state
+16m         Normal    SuccessfulAttachVolume   pod/hive-metastore-0                             AttachVolume.Attach succeeded for volume "pvc-f8dad6e1-cb63-11e9-a85b-0698e01dcbf2"
+16m         Normal    Pulling                  pod/hive-metastore-0                             Pulling image "quay.io/openshift/origin-metering-hive:4.1"
+16m         Normal    Pulled                   pod/hive-metastore-0                             Successfully pulled image "quay.io/openshift/origin-metering-hive:4.1"
+16m         Normal    Created                  pod/hive-metastore-0                             Created container metastore
+16m         Normal    Started                  pod/hive-metastore-0                             Started container metastore
+33m         Normal    WaitForFirstConsumer     persistentvolumeclaim/hive-metastore-db-data     waiting for first consumer to be created before binding
+30m         Normal    WaitForFirstConsumer     persistentvolumeclaim/hive-metastore-db-data     waiting for first consumer to be created before binding
+27m         Normal    WaitForFirstConsumer     persistentvolumeclaim/hive-metastore-db-data     waiting for first consumer to be created before binding
+25m         Normal    WaitForFirstConsumer     persistentvolumeclaim/hive-metastore-db-data     waiting for first consumer to be created before binding
+22m         Normal    WaitForFirstConsumer     persistentvolumeclaim/hive-metastore-db-data     waiting for first consumer to be created before binding
+20m         Normal    WaitForFirstConsumer     persistentvolumeclaim/hive-metastore-db-data     waiting for first consumer to be created before binding
+17m         Normal    WaitForFirstConsumer     persistentvolumeclaim/hive-metastore-db-data     waiting for first consumer to be created before binding
+16m         Normal    WaitForFirstConsumer     persistentvolumeclaim/hive-metastore-db-data     waiting for first consumer to be created before binding
+16m         Normal    ProvisioningSucceeded    persistentvolumeclaim/hive-metastore-db-data     Successfully provisioned volume pvc-f8dad6e1-cb63-11e9-a85b-0698e01dcbf2 using kubernetes.io/aws-ebs
+145m        Normal    SuccessfulCreate         statefulset/hive-metastore                       create Pod hive-metastore-0 in StatefulSet hive-metastore successful
+80m         Normal    SuccessfulCreate         statefulset/hive-metastore                       create Pod hive-metastore-0 in StatefulSet hive-metastore successful
+36m         Normal    SuccessfulDelete         statefulset/hive-metastore                       delete Pod hive-metastore-0 in StatefulSet hive-metastore successful
+16m         Normal    SuccessfulCreate         statefulset/hive-metastore                       create Pod hive-metastore-0 in StatefulSet hive-metastore successful
+144m        Normal    Killing                  pod/hive-server-0                                Stopping container hiveserver2
+140m        Warning   FailedMount              pod/hive-server-0                                MountVolume.SetUp failed for volume "hive-config" : stat /var/lib/kubelet/pods/9f0cc9b7-ca87-11e9-a248-0698e01dcbf2/volumes/kubernetes.io~configmap/hive-config: no such file or directory
+140m        Warning   FailedMount              pod/hive-server-0                                MountVolume.SetUp failed for volume "hive-scripts" : stat /var/lib/kubelet/pods/9f0cc9b7-ca87-11e9-a248-0698e01dcbf2/volumes/kubernetes.io~configmap/hive-scripts: no such file or directory
+140m        Warning   FailedMount              pod/hive-server-0                                MountVolume.SetUp failed for volume "hdfs-config" : stat /var/lib/kubelet/pods/9f0cc9b7-ca87-11e9-a248-0698e01dcbf2/volumes/kubernetes.io~configmap/hdfs-config: no such file or directory
+140m        Normal    TaintManagerEviction     pod/hive-server-0                                Cancelling deletion of Pod openshift-metering/hive-server-0
+140m        Normal    Scheduled                pod/hive-server-0                                Successfully assigned openshift-metering/hive-server-0 to ip-10-0-156-35.us-west-2.compute.internal
+134m        Normal    Pulling                  pod/hive-server-0                                Pulling image "quay.io/openshift/origin-metering-hive:4.1"
+134m        Normal    Pulled                   pod/hive-server-0                                Successfully pulled image "quay.io/openshift/origin-metering-hive:4.1"
+134m        Normal    Created                  pod/hive-server-0                                Created container hiveserver2
+140m        Normal    Started                  pod/hive-server-0                                Started container hiveserver2
+80m         Warning   Unhealthy                pod/hive-server-0                                Readiness probe failed: dial tcp 10.129.2.71:10000: connect: connection refused
+134m        Warning   Unhealthy                pod/hive-server-0                                Liveness probe failed: dial tcp 10.129.2.71:10000: connect: connection refused
+134m        Normal    Killing                  pod/hive-server-0                                Container hiveserver2 failed liveness probe, will be restarted
+80m         Normal    Killing                  pod/hive-server-0                                Stopping container hiveserver2
+80m         Normal    Scheduled                pod/hive-server-0                                Successfully assigned openshift-metering/hive-server-0 to ip-10-0-142-130.us-west-2.compute.internal
+59m         Normal    Pulling                  pod/hive-server-0                                Pulling image "quay.io/openshift/origin-metering-hive:4.1"
+72m         Normal    Pulled                   pod/hive-server-0                                Successfully pulled image "quay.io/openshift/origin-metering-hive:4.1"
+79m         Normal    Created                  pod/hive-server-0                                Created container hiveserver2
+79m         Normal    Started                  pod/hive-server-0                                Started container hiveserver2
+64m         Warning   Unhealthy                pod/hive-server-0                                Readiness probe failed: dial tcp 10.130.2.232:10000: connect: connection refused
+72m         Warning   Unhealthy                pod/hive-server-0                                Liveness probe failed: dial tcp 10.130.2.232:10000: connect: connection refused
+72m         Normal    Killing                  pod/hive-server-0                                Container hiveserver2 failed liveness probe, will be restarted
+36m         Normal    Killing                  pod/hive-server-0                                Stopping container hiveserver2
+16m         Normal    Scheduled                pod/hive-server-0                                Successfully assigned openshift-metering/hive-server-0 to ip-10-0-148-140.us-west-2.compute.internal
+16m         Normal    Pulling                  pod/hive-server-0                                Pulling image "quay.io/openshift/origin-metering-hive:4.1"
+16m         Normal    Pulled                   pod/hive-server-0                                Successfully pulled image "quay.io/openshift/origin-metering-hive:4.1"
+16m         Normal    Created                  pod/hive-server-0                                Created container hiveserver2
+16m         Normal    Started                  pod/hive-server-0                                Started container hiveserver2
+14m         Warning   Unhealthy                pod/hive-server-0                                Readiness probe failed: dial tcp 10.131.4.28:10000: connect: connection refused
+80m         Normal    SuccessfulCreate         statefulset/hive-server                          create Pod hive-server-0 in StatefulSet hive-server successful
+36m         Normal    SuccessfulDelete         statefulset/hive-server                          delete Pod hive-server-0 in StatefulSet hive-server successful
+16m         Normal    SuccessfulCreate         statefulset/hive-server                          create Pod hive-server-0 in StatefulSet hive-server successful
+144m        Normal    Killing                  pod/metering-operator-698f55bb84-4fpvm           Stopping container metering-operator
+144m        Normal    Killing                  pod/metering-operator-698f55bb84-4fpvm           Stopping container tiller
+140m        Normal    TaintManagerEviction     pod/metering-operator-698f55bb84-4fpvm           Cancelling deletion of Pod openshift-metering/metering-operator-698f55bb84-4fpvm
+143m        Normal    Scheduled                pod/metering-operator-698f55bb84-98vsn           Successfully assigned openshift-metering/metering-operator-698f55bb84-98vsn to ip-10-0-130-174.us-west-2.compute.internal
+142m        Normal    Pulling                  pod/metering-operator-698f55bb84-98vsn           Pulling image "quay.io/openshift/origin-metering-helm-operator:4.1"
+142m        Normal    Pulled                   pod/metering-operator-698f55bb84-98vsn           Successfully pulled image "quay.io/openshift/origin-metering-helm-operator:4.1"
+142m        Normal    Created                  pod/metering-operator-698f55bb84-98vsn           Created container metering-operator
+142m        Normal    Started                  pod/metering-operator-698f55bb84-98vsn           Started container metering-operator
+142m        Normal    Pulling                  pod/metering-operator-698f55bb84-98vsn           Pulling image "quay.io/openshift/origin-metering-helm-operator:4.1"
+142m        Normal    Pulled                   pod/metering-operator-698f55bb84-98vsn           Successfully pulled image "quay.io/openshift/origin-metering-helm-operator:4.1"
+142m        Normal    Created                  pod/metering-operator-698f55bb84-98vsn           Created container tiller
+142m        Normal    Started                  pod/metering-operator-698f55bb84-98vsn           Started container tiller
+142m        Warning   Unhealthy                pod/metering-operator-698f55bb84-98vsn           Liveness probe failed: Get http://10.131.2.21:44135/liveness: dial tcp 10.131.2.21:44135: connect: connection refused
+142m        Warning   Unhealthy                pod/metering-operator-698f55bb84-98vsn           Readiness probe failed: Get http://10.131.2.21:44135/readiness: dial tcp 10.131.2.21:44135: connect: connection refused
+62m         Normal    Killing                  pod/metering-operator-698f55bb84-98vsn           Stopping container metering-operator
+62m         Normal    Killing                  pod/metering-operator-698f55bb84-98vsn           Stopping container tiller
+62m         Normal    Scheduled                pod/metering-operator-698f55bb84-b7zrg           Successfully assigned openshift-metering/metering-operator-698f55bb84-b7zrg to ip-10-0-162-180.us-west-2.compute.internal
+62m         Normal    Pulling                  pod/metering-operator-698f55bb84-b7zrg           Pulling image "quay.io/openshift/origin-metering-helm-operator:4.1"
+61m         Normal    Pulled                   pod/metering-operator-698f55bb84-b7zrg           Successfully pulled image "quay.io/openshift/origin-metering-helm-operator:4.1"
+61m         Normal    Created                  pod/metering-operator-698f55bb84-b7zrg           Created container metering-operator
+61m         Normal    Started                  pod/metering-operator-698f55bb84-b7zrg           Started container metering-operator
+60m         Normal    Pulling                  pod/metering-operator-698f55bb84-b7zrg           Pulling image "quay.io/openshift/origin-metering-helm-operator:4.1"
+60m         Normal    Pulled                   pod/metering-operator-698f55bb84-b7zrg           Successfully pulled image "quay.io/openshift/origin-metering-helm-operator:4.1"
+60m         Normal    Created                  pod/metering-operator-698f55bb84-b7zrg           Created container tiller
+60m         Normal    Started                  pod/metering-operator-698f55bb84-b7zrg           Started container tiller
+143m        Normal    SuccessfulCreate         replicaset/metering-operator-698f55bb84          Created pod: metering-operator-698f55bb84-98vsn
+62m         Normal    SuccessfulCreate         replicaset/metering-operator-698f55bb84          Created pod: metering-operator-698f55bb84-b7zrg
+62m         Warning   ComponentUnhealthy       clusterserviceversion/metering-operator.v4.1.0   installing: Waiting: waiting for deployment metering-operator to become ready: Waiting for rollout to finish: 0 of 1 updated replicas are available...
+62m         Normal    NeedsReinstall           clusterserviceversion/metering-operator.v4.1.0   installing: Waiting: waiting for deployment metering-operator to become ready: Waiting for rollout to finish: 0 of 1 updated replicas are available...
+62m         Normal    AllRequirementsMet       clusterserviceversion/metering-operator.v4.1.0   all requirements found, attempting install
+62m         Warning   InstallComponentFailed   clusterserviceversion/metering-operator.v4.1.0   install strategy failed: Deployment openshift-metering/metering-operator does not have rolling update strategy enabled
+144m        Normal    Killing                  pod/presto-coordinator-5548fcbdc6-gcn27          Stopping container presto
+80m         Normal    Scheduled                pod/presto-coordinator-5548fcbdc6-hz5t4          Successfully assigned openshift-metering/presto-coordinator-5548fcbdc6-hz5t4 to ip-10-0-134-21.us-west-2.compute.internal
+80m         Normal    Pulling                  pod/presto-coordinator-5548fcbdc6-hz5t4          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+79m         Normal    Pulled                   pod/presto-coordinator-5548fcbdc6-hz5t4          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+79m         Normal    Created                  pod/presto-coordinator-5548fcbdc6-hz5t4          Created container copy-presto-config
+79m         Normal    Started                  pod/presto-coordinator-5548fcbdc6-hz5t4          Started container copy-presto-config
+79m         Normal    Pulling                  pod/presto-coordinator-5548fcbdc6-hz5t4          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+79m         Normal    Pulled                   pod/presto-coordinator-5548fcbdc6-hz5t4          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+79m         Normal    Created                  pod/presto-coordinator-5548fcbdc6-hz5t4          Created container presto
+79m         Normal    Started                  pod/presto-coordinator-5548fcbdc6-hz5t4          Started container presto
+40m         Normal    Killing                  pod/presto-coordinator-5548fcbdc6-hz5t4          Stopping container presto
+143m        Normal    Scheduled                pod/presto-coordinator-5548fcbdc6-p8xqh          Successfully assigned openshift-metering/presto-coordinator-5548fcbdc6-p8xqh to ip-10-0-156-35.us-west-2.compute.internal
+143m        Normal    Pulling                  pod/presto-coordinator-5548fcbdc6-p8xqh          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+143m        Normal    Pulled                   pod/presto-coordinator-5548fcbdc6-p8xqh          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+143m        Normal    Created                  pod/presto-coordinator-5548fcbdc6-p8xqh          Created container copy-presto-config
+143m        Normal    Started                  pod/presto-coordinator-5548fcbdc6-p8xqh          Started container copy-presto-config
+142m        Normal    Pulling                  pod/presto-coordinator-5548fcbdc6-p8xqh          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+142m        Normal    Pulled                   pod/presto-coordinator-5548fcbdc6-p8xqh          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+142m        Normal    Created                  pod/presto-coordinator-5548fcbdc6-p8xqh          Created container presto
+142m        Normal    Started                  pod/presto-coordinator-5548fcbdc6-p8xqh          Started container presto
+80m         Normal    Killing                  pod/presto-coordinator-5548fcbdc6-p8xqh          Stopping container presto
+143m        Normal    SuccessfulCreate         replicaset/presto-coordinator-5548fcbdc6         Created pod: presto-coordinator-5548fcbdc6-p8xqh
+80m         Normal    SuccessfulCreate         replicaset/presto-coordinator-5548fcbdc6         Created pod: presto-coordinator-5548fcbdc6-hz5t4
+40m         Normal    SuccessfulDelete         replicaset/presto-coordinator-5548fcbdc6         Deleted pod: presto-coordinator-5548fcbdc6-hz5t4
+29m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-5rt6p          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-5rt6p to ip-10-0-152-91.us-west-2.compute.internal
+29m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-5rt6p          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+29m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-5rt6p          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+29m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-5rt6p          Created container copy-presto-config
+29m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-5rt6p          Started container copy-presto-config
+29m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-5rt6p          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+29m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-5rt6p          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+29m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-5rt6p          Created container presto
+29m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-5rt6p          Started container presto
+28m         Normal    Killing                  pod/presto-coordinator-849b6ccbc6-5rt6p          Stopping container presto
+32m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-bxrjf          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-bxrjf to ip-10-0-152-91.us-west-2.compute.internal
+32m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-bxrjf          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+32m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-bxrjf          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+32m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-bxrjf          Created container copy-presto-config
+32m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-bxrjf          Started container copy-presto-config
+32m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-bxrjf          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+32m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-bxrjf          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+32m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-bxrjf          Created container presto
+32m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-bxrjf          Started container presto
+30m         Normal    Killing                  pod/presto-coordinator-849b6ccbc6-bxrjf          Stopping container presto
+21m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-cxln6          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-cxln6 to ip-10-0-152-91.us-west-2.compute.internal
+21m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-cxln6          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+21m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-cxln6          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+21m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-cxln6          Created container copy-presto-config
+21m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-cxln6          Started container copy-presto-config
+21m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-cxln6          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+21m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-cxln6          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+21m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-cxln6          Created container presto
+21m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-cxln6          Started container presto
+20m         Normal    Killing                  pod/presto-coordinator-849b6ccbc6-cxln6          Stopping container presto
+34m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-mmw6k          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-mmw6k to ip-10-0-152-91.us-west-2.compute.internal
+34m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-mmw6k          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+34m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-mmw6k          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+34m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-mmw6k          Created container copy-presto-config
+34m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-mmw6k          Started container copy-presto-config
+34m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-mmw6k          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+34m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-mmw6k          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+34m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-mmw6k          Created container presto
+34m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-mmw6k          Started container presto
+33m         Normal    Killing                  pod/presto-coordinator-849b6ccbc6-mmw6k          Stopping container presto
+41m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-pv4mq          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-pv4mq to ip-10-0-152-91.us-west-2.compute.internal
+41m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-pv4mq          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+40m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-pv4mq          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+40m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-pv4mq          Created container copy-presto-config
+40m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-pv4mq          Started container copy-presto-config
+40m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-pv4mq          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+40m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-pv4mq          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+40m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-pv4mq          Created container presto
+40m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-pv4mq          Started container presto
+36m         Normal    Killing                  pod/presto-coordinator-849b6ccbc6-pv4mq          Stopping container presto
+24m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-qr4dn          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-qr4dn to ip-10-0-152-91.us-west-2.compute.internal
+24m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-qr4dn          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+24m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-qr4dn          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+24m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-qr4dn          Created container copy-presto-config
+24m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-qr4dn          Started container copy-presto-config
+24m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-qr4dn          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+24m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-qr4dn          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+24m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-qr4dn          Created container presto
+24m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-qr4dn          Started container presto
+22m         Normal    Killing                  pod/presto-coordinator-849b6ccbc6-qr4dn          Stopping container presto
+16m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-slp6n          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-slp6n to ip-10-0-152-91.us-west-2.compute.internal
+16m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-slp6n          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+16m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-slp6n          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+16m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-slp6n          Created container copy-presto-config
+16m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-slp6n          Started container copy-presto-config
+16m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-slp6n          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+16m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-slp6n          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+16m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-slp6n          Created container presto
+16m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-slp6n          Started container presto
+27m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-slt92          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-slt92 to ip-10-0-152-91.us-west-2.compute.internal
+26m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-slt92          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+26m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-slt92          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+26m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-slt92          Created container copy-presto-config
+26m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-slt92          Started container copy-presto-config
+26m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-slt92          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+26m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-slt92          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+26m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-slt92          Created container presto
+26m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-slt92          Started container presto
+25m         Normal    Killing                  pod/presto-coordinator-849b6ccbc6-slt92          Stopping container presto
+19m         Normal    Scheduled                pod/presto-coordinator-849b6ccbc6-v5rpp          Successfully assigned openshift-metering/presto-coordinator-849b6ccbc6-v5rpp to ip-10-0-152-91.us-west-2.compute.internal
+19m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-v5rpp          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+19m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-v5rpp          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+19m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-v5rpp          Created container copy-presto-config
+19m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-v5rpp          Started container copy-presto-config
+18m         Normal    Pulling                  pod/presto-coordinator-849b6ccbc6-v5rpp          Pulling image "quay.io/openshift/origin-metering-presto:4.1"
+18m         Normal    Pulled                   pod/presto-coordinator-849b6ccbc6-v5rpp          Successfully pulled image "quay.io/openshift/origin-metering-presto:4.1"
+18m         Normal    Created                  pod/presto-coordinator-849b6ccbc6-v5rpp          Created container presto
+18m         Normal    Started                  pod/presto-coordinator-849b6ccbc6-v5rpp          Started container presto
+17m         Normal    Killing                  pod/presto-coordinator-849b6ccbc6-v5rpp          Stopping container presto
+41m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-pv4mq
+36m         Normal    SuccessfulDelete         replicaset/presto-coordinator-849b6ccbc6         Deleted pod: presto-coordinator-849b6ccbc6-pv4mq
+34m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-mmw6k
+33m         Normal    SuccessfulDelete         replicaset/presto-coordinator-849b6ccbc6         Deleted pod: presto-coordinator-849b6ccbc6-mmw6k
+32m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-bxrjf
+30m         Normal    SuccessfulDelete         replicaset/presto-coordinator-849b6ccbc6         Deleted pod: presto-coordinator-849b6ccbc6-bxrjf
+29m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-5rt6p
+28m         Normal    SuccessfulDelete         replicaset/presto-coordinator-849b6ccbc6         Deleted pod: presto-coordinator-849b6ccbc6-5rt6p
+27m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-slt92
+25m         Normal    SuccessfulDelete         replicaset/presto-coordinator-849b6ccbc6         Deleted pod: presto-coordinator-849b6ccbc6-slt92
+24m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-qr4dn
+22m         Normal    SuccessfulDelete         replicaset/presto-coordinator-849b6ccbc6         Deleted pod: presto-coordinator-849b6ccbc6-qr4dn
+21m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-cxln6
+20m         Normal    SuccessfulDelete         replicaset/presto-coordinator-849b6ccbc6         Deleted pod: presto-coordinator-849b6ccbc6-cxln6
+19m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-v5rpp
+17m         Normal    SuccessfulDelete         replicaset/presto-coordinator-849b6ccbc6         Deleted pod: presto-coordinator-849b6ccbc6-v5rpp
+16m         Normal    SuccessfulCreate         replicaset/presto-coordinator-849b6ccbc6         Created pod: presto-coordinator-849b6ccbc6-slp6n
+41m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+40m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-5548fcbdc6 to 0
+36m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-849b6ccbc6 to 0
+34m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+33m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-849b6ccbc6 to 0
+32m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+30m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-849b6ccbc6 to 0
+29m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+28m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-849b6ccbc6 to 0
+27m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+25m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-849b6ccbc6 to 0
+24m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+22m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-849b6ccbc6 to 0
+21m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+20m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-849b6ccbc6 to 0
+19m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+17m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled down replica set presto-coordinator-849b6ccbc6 to 0
+16m         Normal    ScalingReplicaSet        deployment/presto-coordinator                    Scaled up replica set presto-coordinator-849b6ccbc6 to 1
+3h36m       Normal    TaintManagerEviction     pod/reporting-operator-5dbdd7f978-9kqbm          Marking for deletion Pod openshift-metering/reporting-operator-5dbdd7f978-9kqbm
+143m        Normal    Scheduled                pod/reporting-operator-5dbdd7f978-9kvg4          Successfully assigned openshift-metering/reporting-operator-5dbdd7f978-9kvg4 to ip-10-0-130-174.us-west-2.compute.internal
+142m        Normal    Pulling                  pod/reporting-operator-5dbdd7f978-9kvg4          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+142m        Normal    Pulled                   pod/reporting-operator-5dbdd7f978-9kvg4          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+142m        Normal    Created                  pod/reporting-operator-5dbdd7f978-9kvg4          Created container reporting-operator
+142m        Normal    Started                  pod/reporting-operator-5dbdd7f978-9kvg4          Started container reporting-operator
+142m        Normal    Pulling                  pod/reporting-operator-5dbdd7f978-9kvg4          Pulling image "openshift/oauth-proxy:v1.1.0"
+142m        Normal    Pulled                   pod/reporting-operator-5dbdd7f978-9kvg4          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+142m        Normal    Created                  pod/reporting-operator-5dbdd7f978-9kvg4          Created container reporting-operator-auth-proxy
+142m        Normal    Started                  pod/reporting-operator-5dbdd7f978-9kvg4          Started container reporting-operator-auth-proxy
+79m         Warning   Unhealthy                pod/reporting-operator-5dbdd7f978-9kvg4          Readiness probe failed: HTTP probe failed with statuscode: 500
+79m         Warning   Unhealthy                pod/reporting-operator-5dbdd7f978-9kvg4          Liveness probe failed: HTTP probe failed with statuscode: 500
+62m         Normal    Killing                  pod/reporting-operator-5dbdd7f978-9kvg4          Stopping container reporting-operator-auth-proxy
+62m         Normal    Killing                  pod/reporting-operator-5dbdd7f978-9kvg4          Stopping container reporting-operator
+62m         Normal    Scheduled                pod/reporting-operator-5dbdd7f978-b2k9g          Successfully assigned openshift-metering/reporting-operator-5dbdd7f978-b2k9g to ip-10-0-142-130.us-west-2.compute.internal
+62m         Normal    Pulling                  pod/reporting-operator-5dbdd7f978-b2k9g          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+62m         Normal    Pulled                   pod/reporting-operator-5dbdd7f978-b2k9g          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+62m         Normal    Created                  pod/reporting-operator-5dbdd7f978-b2k9g          Created container reporting-operator
+62m         Normal    Started                  pod/reporting-operator-5dbdd7f978-b2k9g          Started container reporting-operator
+62m         Normal    Pulling                  pod/reporting-operator-5dbdd7f978-b2k9g          Pulling image "openshift/oauth-proxy:v1.1.0"
+61m         Normal    Pulled                   pod/reporting-operator-5dbdd7f978-b2k9g          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+61m         Normal    Created                  pod/reporting-operator-5dbdd7f978-b2k9g          Created container reporting-operator-auth-proxy
+61m         Normal    Started                  pod/reporting-operator-5dbdd7f978-b2k9g          Started container reporting-operator-auth-proxy
+39m         Normal    Killing                  pod/reporting-operator-5dbdd7f978-b2k9g          Stopping container reporting-operator
+39m         Normal    Killing                  pod/reporting-operator-5dbdd7f978-b2k9g          Stopping container reporting-operator-auth-proxy
+144m        Normal    Killing                  pod/reporting-operator-5dbdd7f978-v495k          Stopping container reporting-operator
+144m        Normal    Killing                  pod/reporting-operator-5dbdd7f978-v495k          Stopping container reporting-operator-auth-proxy
+143m        Normal    SuccessfulCreate         replicaset/reporting-operator-5dbdd7f978         Created pod: reporting-operator-5dbdd7f978-9kvg4
+62m         Normal    SuccessfulCreate         replicaset/reporting-operator-5dbdd7f978         Created pod: reporting-operator-5dbdd7f978-b2k9g
+39m         Normal    SuccessfulDelete         replicaset/reporting-operator-5dbdd7f978         Deleted pod: reporting-operator-5dbdd7f978-b2k9g
+21m         Normal    Scheduled                pod/reporting-operator-746569cd7f-4whjd          Successfully assigned openshift-metering/reporting-operator-746569cd7f-4whjd to ip-10-0-148-140.us-west-2.compute.internal
+21m         Normal    Pulling                  pod/reporting-operator-746569cd7f-4whjd          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+21m         Normal    Pulled                   pod/reporting-operator-746569cd7f-4whjd          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+21m         Normal    Created                  pod/reporting-operator-746569cd7f-4whjd          Created container reporting-operator
+21m         Normal    Started                  pod/reporting-operator-746569cd7f-4whjd          Started container reporting-operator
+21m         Normal    Pulling                  pod/reporting-operator-746569cd7f-4whjd          Pulling image "openshift/oauth-proxy:v1.1.0"
+21m         Normal    Pulled                   pod/reporting-operator-746569cd7f-4whjd          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+21m         Normal    Created                  pod/reporting-operator-746569cd7f-4whjd          Created container reporting-operator-auth-proxy
+21m         Normal    Started                  pod/reporting-operator-746569cd7f-4whjd          Started container reporting-operator-auth-proxy
+20m         Normal    Killing                  pod/reporting-operator-746569cd7f-4whjd          Stopping container reporting-operator
+20m         Normal    Killing                  pod/reporting-operator-746569cd7f-4whjd          Stopping container reporting-operator-auth-proxy
+27m         Normal    Scheduled                pod/reporting-operator-746569cd7f-6tx2z          Successfully assigned openshift-metering/reporting-operator-746569cd7f-6tx2z to ip-10-0-148-140.us-west-2.compute.internal
+27m         Warning   FailedMount              pod/reporting-operator-746569cd7f-6tx2z          MountVolume.SetUp failed for volume "api-tls" : secrets "reporting-operator-api-tls-secrets" not found
+26m         Normal    Pulling                  pod/reporting-operator-746569cd7f-6tx2z          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+26m         Normal    Pulled                   pod/reporting-operator-746569cd7f-6tx2z          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+26m         Normal    Created                  pod/reporting-operator-746569cd7f-6tx2z          Created container reporting-operator
+26m         Normal    Started                  pod/reporting-operator-746569cd7f-6tx2z          Started container reporting-operator
+26m         Normal    Pulling                  pod/reporting-operator-746569cd7f-6tx2z          Pulling image "openshift/oauth-proxy:v1.1.0"
+26m         Normal    Pulled                   pod/reporting-operator-746569cd7f-6tx2z          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+26m         Normal    Created                  pod/reporting-operator-746569cd7f-6tx2z          Created container reporting-operator-auth-proxy
+26m         Normal    Started                  pod/reporting-operator-746569cd7f-6tx2z          Started container reporting-operator-auth-proxy
+25m         Normal    Killing                  pod/reporting-operator-746569cd7f-6tx2z          Stopping container reporting-operator
+25m         Normal    Killing                  pod/reporting-operator-746569cd7f-6tx2z          Stopping container reporting-operator-auth-proxy
+34m         Normal    Scheduled                pod/reporting-operator-746569cd7f-bj2bp          Successfully assigned openshift-metering/reporting-operator-746569cd7f-bj2bp to ip-10-0-148-140.us-west-2.compute.internal
+33m         Warning   FailedMount              pod/reporting-operator-746569cd7f-bj2bp          MountVolume.SetUp failed for volume "api-tls" : secrets "reporting-operator-api-tls-secrets" not found
+34m         Normal    Pulling                  pod/reporting-operator-746569cd7f-bj2bp          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+34m         Normal    Pulled                   pod/reporting-operator-746569cd7f-bj2bp          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+34m         Normal    Created                  pod/reporting-operator-746569cd7f-bj2bp          Created container reporting-operator
+34m         Normal    Started                  pod/reporting-operator-746569cd7f-bj2bp          Started container reporting-operator
+34m         Normal    Pulling                  pod/reporting-operator-746569cd7f-bj2bp          Pulling image "openshift/oauth-proxy:v1.1.0"
+34m         Normal    Pulled                   pod/reporting-operator-746569cd7f-bj2bp          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+34m         Normal    Created                  pod/reporting-operator-746569cd7f-bj2bp          Created container reporting-operator-auth-proxy
+34m         Normal    Started                  pod/reporting-operator-746569cd7f-bj2bp          Started container reporting-operator-auth-proxy
+33m         Warning   Unhealthy                pod/reporting-operator-746569cd7f-bj2bp          Readiness probe failed: HTTP probe failed with statuscode: 500
+33m         Warning   FailedMount              pod/reporting-operator-746569cd7f-bj2bp          MountVolume.SetUp failed for volume "metrics-tls" : secrets "reporting-operator-metrics-tls-secrets" not found
+33m         Normal    Killing                  pod/reporting-operator-746569cd7f-bj2bp          Stopping container reporting-operator
+33m         Normal    Killing                  pod/reporting-operator-746569cd7f-bj2bp          Stopping container reporting-operator-auth-proxy
+41m         Normal    Scheduled                pod/reporting-operator-746569cd7f-dxrhv          Successfully assigned openshift-metering/reporting-operator-746569cd7f-dxrhv to ip-10-0-148-140.us-west-2.compute.internal
+41m         Normal    Pulling                  pod/reporting-operator-746569cd7f-dxrhv          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+40m         Normal    Pulled                   pod/reporting-operator-746569cd7f-dxrhv          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+40m         Normal    Created                  pod/reporting-operator-746569cd7f-dxrhv          Created container reporting-operator
+40m         Normal    Started                  pod/reporting-operator-746569cd7f-dxrhv          Started container reporting-operator
+40m         Normal    Pulling                  pod/reporting-operator-746569cd7f-dxrhv          Pulling image "openshift/oauth-proxy:v1.1.0"
+40m         Normal    Pulled                   pod/reporting-operator-746569cd7f-dxrhv          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+40m         Normal    Created                  pod/reporting-operator-746569cd7f-dxrhv          Created container reporting-operator-auth-proxy
+40m         Normal    Started                  pod/reporting-operator-746569cd7f-dxrhv          Started container reporting-operator-auth-proxy
+36m         Warning   FailedMount              pod/reporting-operator-746569cd7f-dxrhv          MountVolume.SetUp failed for volume "metrics-tls" : secrets "reporting-operator-metrics-tls-secrets" not found
+35m         Warning   Unhealthy                pod/reporting-operator-746569cd7f-dxrhv          Liveness probe failed: HTTP probe failed with statuscode: 500
+35m         Normal    Killing                  pod/reporting-operator-746569cd7f-dxrhv          Stopping container reporting-operator
+35m         Normal    Killing                  pod/reporting-operator-746569cd7f-dxrhv          Stopping container reporting-operator-auth-proxy
+16m         Normal    Scheduled                pod/reporting-operator-746569cd7f-gj7pd          Successfully assigned openshift-metering/reporting-operator-746569cd7f-gj7pd to ip-10-0-134-21.us-west-2.compute.internal
+16m         Normal    Pulling                  pod/reporting-operator-746569cd7f-gj7pd          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+16m         Normal    Pulled                   pod/reporting-operator-746569cd7f-gj7pd          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+16m         Normal    Created                  pod/reporting-operator-746569cd7f-gj7pd          Created container reporting-operator
+16m         Normal    Started                  pod/reporting-operator-746569cd7f-gj7pd          Started container reporting-operator
+16m         Normal    Pulling                  pod/reporting-operator-746569cd7f-gj7pd          Pulling image "openshift/oauth-proxy:v1.1.0"
+16m         Normal    Pulled                   pod/reporting-operator-746569cd7f-gj7pd          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+16m         Normal    Created                  pod/reporting-operator-746569cd7f-gj7pd          Created container reporting-operator-auth-proxy
+16m         Normal    Started                  pod/reporting-operator-746569cd7f-gj7pd          Started container reporting-operator-auth-proxy
+24m         Normal    Scheduled                pod/reporting-operator-746569cd7f-n4dfk          Successfully assigned openshift-metering/reporting-operator-746569cd7f-n4dfk to ip-10-0-134-21.us-west-2.compute.internal
+22m         Warning   FailedMount              pod/reporting-operator-746569cd7f-n4dfk          MountVolume.SetUp failed for volume "api-tls" : secrets "reporting-operator-api-tls-secrets" not found
+22m         Warning   FailedMount              pod/reporting-operator-746569cd7f-n4dfk          MountVolume.SetUp failed for volume "metrics-tls" : secrets "reporting-operator-metrics-tls-secrets" not found
+24m         Normal    Pulling                  pod/reporting-operator-746569cd7f-n4dfk          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+24m         Normal    Pulled                   pod/reporting-operator-746569cd7f-n4dfk          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+24m         Normal    Created                  pod/reporting-operator-746569cd7f-n4dfk          Created container reporting-operator
+24m         Normal    Started                  pod/reporting-operator-746569cd7f-n4dfk          Started container reporting-operator
+24m         Normal    Pulling                  pod/reporting-operator-746569cd7f-n4dfk          Pulling image "openshift/oauth-proxy:v1.1.0"
+24m         Normal    Pulled                   pod/reporting-operator-746569cd7f-n4dfk          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+24m         Normal    Created                  pod/reporting-operator-746569cd7f-n4dfk          Created container reporting-operator-auth-proxy
+24m         Normal    Started                  pod/reporting-operator-746569cd7f-n4dfk          Started container reporting-operator-auth-proxy
+22m         Normal    Killing                  pod/reporting-operator-746569cd7f-n4dfk          Stopping container reporting-operator
+22m         Normal    Killing                  pod/reporting-operator-746569cd7f-n4dfk          Stopping container reporting-operator-auth-proxy
+32m         Normal    Scheduled                pod/reporting-operator-746569cd7f-rrbjn          Successfully assigned openshift-metering/reporting-operator-746569cd7f-rrbjn to ip-10-0-148-140.us-west-2.compute.internal
+30m         Warning   FailedMount              pod/reporting-operator-746569cd7f-rrbjn          MountVolume.SetUp failed for volume "api-tls" : secrets "reporting-operator-api-tls-secrets" not found
+32m         Normal    Pulling                  pod/reporting-operator-746569cd7f-rrbjn          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+32m         Normal    Pulled                   pod/reporting-operator-746569cd7f-rrbjn          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+32m         Normal    Created                  pod/reporting-operator-746569cd7f-rrbjn          Created container reporting-operator
+32m         Normal    Started                  pod/reporting-operator-746569cd7f-rrbjn          Started container reporting-operator
+32m         Normal    Pulling                  pod/reporting-operator-746569cd7f-rrbjn          Pulling image "openshift/oauth-proxy:v1.1.0"
+32m         Normal    Pulled                   pod/reporting-operator-746569cd7f-rrbjn          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+31m         Normal    Created                  pod/reporting-operator-746569cd7f-rrbjn          Created container reporting-operator-auth-proxy
+31m         Normal    Started                  pod/reporting-operator-746569cd7f-rrbjn          Started container reporting-operator-auth-proxy
+30m         Warning   FailedMount              pod/reporting-operator-746569cd7f-rrbjn          MountVolume.SetUp failed for volume "metrics-tls" : secrets "reporting-operator-metrics-tls-secrets" not found
+30m         Normal    Killing                  pod/reporting-operator-746569cd7f-rrbjn          Stopping container reporting-operator
+30m         Normal    Killing                  pod/reporting-operator-746569cd7f-rrbjn          Stopping container reporting-operator-auth-proxy
+29m         Normal    Scheduled                pod/reporting-operator-746569cd7f-vnc8h          Successfully assigned openshift-metering/reporting-operator-746569cd7f-vnc8h to ip-10-0-134-21.us-west-2.compute.internal
+29m         Normal    Pulling                  pod/reporting-operator-746569cd7f-vnc8h          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+29m         Normal    Pulled                   pod/reporting-operator-746569cd7f-vnc8h          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+29m         Normal    Created                  pod/reporting-operator-746569cd7f-vnc8h          Created container reporting-operator
+29m         Normal    Started                  pod/reporting-operator-746569cd7f-vnc8h          Started container reporting-operator
+29m         Normal    Pulling                  pod/reporting-operator-746569cd7f-vnc8h          Pulling image "openshift/oauth-proxy:v1.1.0"
+29m         Normal    Pulled                   pod/reporting-operator-746569cd7f-vnc8h          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+29m         Normal    Created                  pod/reporting-operator-746569cd7f-vnc8h          Created container reporting-operator-auth-proxy
+29m         Normal    Started                  pod/reporting-operator-746569cd7f-vnc8h          Started container reporting-operator-auth-proxy
+28m         Normal    Killing                  pod/reporting-operator-746569cd7f-vnc8h          Stopping container reporting-operator
+28m         Normal    Killing                  pod/reporting-operator-746569cd7f-vnc8h          Stopping container reporting-operator-auth-proxy
+28m         Warning   Unhealthy                pod/reporting-operator-746569cd7f-vnc8h          Readiness probe failed: Get https://10.128.4.28:8081/ready: dial tcp 10.128.4.28:8081: connect: connection refused
+19m         Normal    Scheduled                pod/reporting-operator-746569cd7f-x45ps          Successfully assigned openshift-metering/reporting-operator-746569cd7f-x45ps to ip-10-0-134-21.us-west-2.compute.internal
+19m         Normal    Pulling                  pod/reporting-operator-746569cd7f-x45ps          Pulling image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+19m         Normal    Pulled                   pod/reporting-operator-746569cd7f-x45ps          Successfully pulled image "quay.io/openshift/origin-metering-reporting-operator:4.1"
+19m         Normal    Created                  pod/reporting-operator-746569cd7f-x45ps          Created container reporting-operator
+19m         Normal    Started                  pod/reporting-operator-746569cd7f-x45ps          Started container reporting-operator
+19m         Normal    Pulling                  pod/reporting-operator-746569cd7f-x45ps          Pulling image "openshift/oauth-proxy:v1.1.0"
+18m         Normal    Pulled                   pod/reporting-operator-746569cd7f-x45ps          Successfully pulled image "openshift/oauth-proxy:v1.1.0"
+18m         Normal    Created                  pod/reporting-operator-746569cd7f-x45ps          Created container reporting-operator-auth-proxy
+18m         Normal    Started                  pod/reporting-operator-746569cd7f-x45ps          Started container reporting-operator-auth-proxy
+17m         Normal    Killing                  pod/reporting-operator-746569cd7f-x45ps          Stopping container reporting-operator
+LAST SEEN   TYPE      REASON                   OBJECT                                           MESSAGE
+17m         Normal    Killing                  pod/reporting-operator-746569cd7f-x45ps          Stopping container reporting-operator-auth-proxy
+41m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-dxrhv
+35m         Normal    SuccessfulDelete         replicaset/reporting-operator-746569cd7f         Deleted pod: reporting-operator-746569cd7f-dxrhv
+34m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-bj2bp
+33m         Normal    SuccessfulDelete         replicaset/reporting-operator-746569cd7f         Deleted pod: reporting-operator-746569cd7f-bj2bp
+32m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-rrbjn
+30m         Normal    SuccessfulDelete         replicaset/reporting-operator-746569cd7f         Deleted pod: reporting-operator-746569cd7f-rrbjn
+29m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-vnc8h
+28m         Normal    SuccessfulDelete         replicaset/reporting-operator-746569cd7f         Deleted pod: reporting-operator-746569cd7f-vnc8h
+27m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-6tx2z
+25m         Normal    SuccessfulDelete         replicaset/reporting-operator-746569cd7f         Deleted pod: reporting-operator-746569cd7f-6tx2z
+24m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-n4dfk
+22m         Normal    SuccessfulDelete         replicaset/reporting-operator-746569cd7f         Deleted pod: reporting-operator-746569cd7f-n4dfk
+21m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-4whjd
+20m         Normal    SuccessfulDelete         replicaset/reporting-operator-746569cd7f         Deleted pod: reporting-operator-746569cd7f-4whjd
+19m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-x45ps
+17m         Normal    SuccessfulDelete         replicaset/reporting-operator-746569cd7f         Deleted pod: reporting-operator-746569cd7f-x45ps
+16m         Normal    SuccessfulCreate         replicaset/reporting-operator-746569cd7f         Created pod: reporting-operator-746569cd7f-gj7pd
+141m        Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-5dbdd7f978-9kvg4 became leader
+61m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-5dbdd7f978-b2k9g became leader
+38m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-dxrhv became leader
+33m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-bj2bp became leader
+30m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-rrbjn became leader
+28m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-vnc8h became leader
+25m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-6tx2z became leader
+22m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-n4dfk became leader
+20m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-4whjd became leader
+17m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-x45ps became leader
+15m         Normal    LeaderElection           configmap/reporting-operator-leader-lease        reporting-operator-746569cd7f-gj7pd became leader
+41m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1
+39m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-5dbdd7f978 to 0
+35m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-746569cd7f to 0
+34m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1
+33m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-746569cd7f to 0
+32m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1
+30m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-746569cd7f to 0
+29m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1
+28m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-746569cd7f to 0
+27m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1
+25m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-746569cd7f to 0
+24m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1
+22m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-746569cd7f to 0
+21m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1
+20m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-746569cd7f to 0
+19m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1
+17m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled down replica set reporting-operator-746569cd7f to 0
+16m         Normal    ScalingReplicaSet        deployment/reporting-operator                    Scaled up replica set reporting-operator-746569cd7f to 1

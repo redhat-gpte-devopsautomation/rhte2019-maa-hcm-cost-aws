@@ -24,8 +24,7 @@ In this lab you will:
 * Add your cluster as a "source" for cost related information to the Account
 * Use labels and tags to associate OpenShift resources with AWS resource tags.
 * Analyse of the existing Account's current costs per Business Initiative
-* Forecast the cost of the Business's proposed Initiatives
-
+* Forecast the cost of the Business's proposed Initiatives 
 [WARNING]
 This product is in the ALPHA state.  Not all features are expected to work.  Your suggestions for improvements and features are welcome.
 
@@ -49,5 +48,29 @@ ssh lab-user@bastion.b1fa.sandbox23.opentlc.com
 ----
 +
 this means that your GUID is b1fa and your Sandbox Number is 23.
+
+
+=== Red Hat Global Partner and Technical Enablement: ELTs and ILTs
+
+GPTE is in the business of delivering training. GPTE delivers both online training (ELT) and in-person training (ILT).
+
+Let's create a system to track the cost of each student's resource usage in the cloud as they take classes.
+
+=== Cloud Resources: Shared Clusters and Dedicated Environments
+
+Some classes (ELTs and ILTs included) are taught by giving students access to a "Shared Cluster." others are taught by creating new "Dedicated Environments" for the student.  Some use both "Shared Clusters" and "Dedicated Environments."
+
+"Shared Clusters" are made up of resources shared with other students, with which they do their lab work. Students in a Shared Cluster are creating and deleting projects and associated OpenShift resources as part of their training,
+
+"Dedicated Environmetns" are created for the student, and only the individual student has access to the resources, These students can create new cloud resources only within their sandbox cloud account. 
+
+=== Cloud Tags and OpenShift Labels
+
+.Default Values
+By default, the Cost Management service can detect which AWS EC2 instance id is being used by an OpenShift cluster.  This gives us coarse grained information regarding the Cloud Resource consumptoin of the cluster.  This would be appropriate for the OCP-related costs of a student with a Dedicated Environment.  However, this does not give us precise knowledge of the students' activities in a Shared Cluster.  
+
+=== Tags ans Labels:
+
+GPTE needs a tagging system to ensure that the class lab environment that was launched by the student is properly accounted for in the Cost Management system.
 
 

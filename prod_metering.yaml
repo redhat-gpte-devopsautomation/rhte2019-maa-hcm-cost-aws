@@ -1,0 +1,90 @@
+apiVersion: metering.openshift.io/v1alpha1
+kind: Metering
+metadata:
+  creationTimestamp: 2019-08-29T18:04:47Z
+  generation: 5
+  name: operator-metering
+  namespace: openshift-metering
+  resourceVersion: "67296110"
+  selfLink: /apis/metering.openshift.io/v1alpha1/namespaces/openshift-metering/meterings/operator-metering
+  uid: 7d1bd92b-ca87-11e9-a248-0698e01dcbf2
+spec:
+  hdfs:
+    spec:
+      datanode:
+        resources:
+          limits:
+            cpu: 250m
+            memory: 750mi
+          requests:
+            cpu: 250m
+            memory: 750mi
+        storage:
+          size: 20Gi
+      namenode:
+        resources:
+          limits:
+            cpu: 250m
+            memory: 1.5Gi
+          requests:
+            cpu: 250m
+            memory: 750Mi
+        storage:
+          size: 20Gi
+  hive:
+    metastore:
+      resources:
+        limits:
+          cpu: 1
+          memory: 1.5Gi
+        requests:
+          cpu: 1
+          memory: 1.5Gi
+      storage:
+        size: 10Gi
+    server:
+      resources:
+        limits:
+          cpu: 250m
+          memory: 500Mi
+        requests:
+          cpu: 250m
+          memory: 500Mi
+  presto:
+    spec:
+      presto:
+        coordinator:
+          resources:
+            limits:
+              cpu: "4"
+              memory: 4Gi
+            requests:
+              cpu: "4"
+              memory: 4Gi
+        worker:
+          replicas: 0
+          resources:
+            limits:
+              cpu: "4"
+              memory: 4Gi
+            requests:
+              cpu: "4"
+              memory: 4Gi
+  reporting-operator:
+    spec:
+      authProxy:
+        cookieSeed: b13c4b2504158972122bb5cbeda135b2
+        delegateURLsEnabled: true
+        enabled: true
+        subjectAccessReviewEnabled: true
+      resources:
+        limits:
+          cpu: 250m
+          memory: 500Mi
+        requests:
+          cpu: 250m
+          memory: 500Mi
+      route:
+        enabled: true
+status:
+  observedVersion: "67209107"
