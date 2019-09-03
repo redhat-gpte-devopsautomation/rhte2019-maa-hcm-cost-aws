@@ -55,3 +55,47 @@ Using the OpenShift Web Console we will add the metering operator and make sure 
 * integrate authN authZ as necessary
 
 
+
+= Sample Environments - "Fibbonacci Enterprises"
+
+== 19 complete OCP4 ILTs over 5 months (dedicated)
+
+* 20 Students Per class
+* 5 day duration
+
+.Per Student = Sandbox (VPC)
+* 1 x t2.medium
+* 3 x m5.xlarge
+* 3 x m5.2xlarge
+
+.Monthly Usage
+* April
+** 1 ILT
+* May
+** 2 ILT
+* June
+** 3 ILT
+* July
+** 5 ILT
+* August
+** 8 ILT
+
+== 50 complete OCP4 Foundations ILTs over 5 months (shared)
+
+* 1 student per class
+* 1 Shared OCP Cluster
+
+
+
+* April
+** 3 ELT
+* May
+** 5 ELT
+* June
+** 8 ELT
+* July
+** 13
+* August
+** 21
+
+
