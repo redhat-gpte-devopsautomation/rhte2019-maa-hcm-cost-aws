@@ -8,9 +8,9 @@ Welcome to the 2019 HCM Cost Management with OpenShift and AWS Lab
 
 Red Hat is in the midsts of developing SaaS offerings for our customer base. One of the first ones will be Cost Management.
 
-Cost Management uses OpenShift labels and AWS tags to bind together the Business initiatives of an organization with the actual expenditures of the technology infrastructure.
+Cost Management reveals the true costs of Business Initiatives.  It does so by appropriately tagging and labeling the resources used by an initiative and offering appropriate reporting on them. Most cloud platforms offer hourly reports on the costs of resources consumed, and when properly labeled and tagged, analysts can report on them.   Further features like forecasting, price-markups, etc. are forthcoming.
 
-Red Hatters will need to learn the basic financial terminology and the problem domains that this product seeks to solve, including:
+To understand and sell this product, Red Hatters will need to learn the basic financial terminology and the problem domains that this product seeks to solve, including:
 
 * Budgeting
 * Forecasting
@@ -24,7 +24,8 @@ In this lab you will:
 * Add your cluster as a "source" for cost related information to the Account
 * Use labels and tags to associate OpenShift resources with AWS resource tags.
 * Analyse of the existing Account's current costs per Business Initiative
-* Forecast the cost of the Business's proposed Initiatives 
+* Forecast the cost of the Business's proposed Initiatives
+
 [WARNING]
 This product is in the ALPHA state.  Not all features are expected to work.  Your suggestions for improvements and features are welcome.
 
@@ -49,8 +50,7 @@ ssh lab-user@bastion.b1fa.sandbox23.opentlc.com
 +
 this means that your GUID is b1fa and your Sandbox Number is 23.
 
-
-=== Red Hat Global Partner and Technical Enablement: ELTs and ILTs
+== Red Hat Global Partner and Technical Enablement: ELTs and ILTs
 
 GPTE is in the business of delivering training. GPTE delivers both online training (ELT) and in-person training (ILT).
 
@@ -58,19 +58,52 @@ Let's create a system to track the cost of each student's resource usage in the 
 
 === Cloud Resources: Shared Clusters and Dedicated Environments
 
-Some classes (ELTs and ILTs included) are taught by giving students access to a "Shared Cluster." others are taught by creating new "Dedicated Environments" for the student.  Some use both "Shared Clusters" and "Dedicated Environments."
+"Shared Clusters" are made up of resources shared with other students, on which they do their lab work. For example, students in a Shared Cluster are creating and deleting projects and associated OpenShift resources as part of their training.  Or perhaps, they might be sharing resources by pulling images from a common Quay registry.
 
-"Shared Clusters" are made up of resources shared with other students, with which they do their lab work. Students in a Shared Cluster are creating and deleting projects and associated OpenShift resources as part of their training,
+"Dedicated Environments" are created for the student, and only the individual student has access to the resources. Oftentimes, these students are confined to a linked or "sandbox" account where they can create new cloud resources in a controlled fashion.
 
-"Dedicated Environmetns" are created for the student, and only the individual student has access to the resources, These students can create new cloud resources only within their sandbox cloud account. 
+Classes can use Shared and/or Dedicated Resources to provide online environments to the students running labs as the lab creator sees fit. ELTs and ILTs can be taught by giving students access to a "Shared Cluster," or allowing the student to create new "Dedicated Environments".  Some use both "Shared Clusters" and "Dedicated Environments."
 
 === Cloud Tags and OpenShift Labels
 
 .Default Values
-By default, the Cost Management service can detect which AWS EC2 instance id is being used by an OpenShift cluster.  This gives us coarse grained information regarding the Cloud Resource consumptoin of the cluster.  This would be appropriate for the OCP-related costs of a student with a Dedicated Environment.  However, this does not give us precise knowledge of the students' activities in a Shared Cluster.  
+By default, the Red Hat Cost Management service can detect which AWS EC2 instance IDs are being used by an OpenShift cluster.  This gives the user coarse grained information regarding the Cloud Resource consumption of the cluster.  This would be appropriate for the OCP-related costs of a student with a Dedicated Environment.  However, this does not give us precise knowledge of the students' activities in a Shared Cluster.
 
-=== Tags ans Labels:
+.Tags and Labels
+To give us precise information as to the students' activities, GPTE needs a tagging system to ensure that the class lab environment that was used by the student is properly accounted for in the Cost Management system. As many as possible of the resourced need to be tagged or labeled, according to the features of the infrastructure providing them.
 
-GPTE needs a tagging system to ensure that the class lab environment that was launched by the student is properly accounted for in the Cost Management system.
+.Business Identifiers
+Let's say that a student with ID `student1-redhat.com` is taking the *OpenShift 4 Foundations* ELT.  We need to label and tag all the resources they will be using for the course of the class.  We should choose a meaningful identifier for the student taking the class.  Let's say `class_session: student1-redhat.com_ocp4-foundations`
+
+.Limitations
+Each infrastructure system has its own limitations in their tagging and labeling mechanisms.  The total number of tags or labels in a system may be limited.  The number of tags on a particular resource may be limited.  The character count and allowed characters may differ.  Care must be taken to create tags and labels that suit all the systems involved.
+
+
+== Examine Cost Management on AWS
+
+* Open AWS to find Tags Available
+* Open Cost Management to find Tags available
+*
+
+
+== Examine Cost Management on OCP4
+
+* Examine how Cost Management is Deployed on OCP4
+* The Metering Operator
+* Cost Reports
+
+
+== Create 
+
+== Business Analysis Scenario
+
+GPTE Senior Management wants to know:
+
+* How much have we spent, month by month, with AWS
+* Infrastructure Cost per student to Run one OpenShift 4 ILT
+* Infrastructure Cost per student to Run one OpenShift 4 "Foundations" ELT
+* How many Students have done the OpenShift 4 "Foundations" ELT the past three months
+* At current rate of usage increase, how much will we be spending on OpenShift 4 "Foundations" ELTs
+
 
 
