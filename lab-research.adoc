@@ -64,9 +64,9 @@ Using the OpenShift Web Console we will add the metering operator and make sure 
 * 5 day duration
 
 .Per Student = Sandbox (VPC)
-* 1 x t2.medium
-* 3 x m5.xlarge
-* 3 x m5.2xlarge
+* 1 x t2.medium - client-vm
+* 3 x m5.xlarge - masters
+* 3 x m5.2xlarge - workers
 
 .Monthly Usage
 * April
@@ -76,26 +76,24 @@ Using the OpenShift Web Console we will add the metering operator and make sure 
 * June
 ** 3 ILT
 * July
-** 5 ILT
+** 4 ILT
 * August
-** 8 ILT
+** 5 ILT
 
 == 50 complete OCP4 Foundations ILTs over 5 months (shared)
 
 * 1 student per class
 * 1 Shared OCP Cluster
 
-
-
 * April
-** 3 ELT
-* May
 ** 5 ELT
+* May
+** 10 ELT
 * June
-** 8 ELT
+** 15 ELT
 * July
-** 13
+** 25
 * August
-** 21
+** 40
 
 
