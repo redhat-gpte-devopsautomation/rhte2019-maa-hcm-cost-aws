@@ -1,0 +1,118 @@
+---
+generators:
+  #
+  # Example Shared Cluster
+  # Data for April 1 - Aug 30
+
+  - EC2Generator:
+      # client-vm
+      start_date: 2019-04-01
+      end_date: 2019-08-30
+      processor_arch: 64-bit
+      resource_id: 55555555
+      product_sku: VEAJHRNKTJZQ
+      region: us-east-2a
+      tags:
+        resourceTags/user:version: prod
+        resourceTags/user:openshift_cluster: shared-ocp4-cluster-prod
+        resourceTags/user:ocp-function: worker
+      instance_type:
+        inst_type: t2.medium
+        vcpu: 2
+        memory: '4 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.0464
+        rate: 0.0464
+  - EBSGenerator:
+      start_date: 2019-04-01
+      end_date: 2019-08-30
+      product_sku: VEAJHRNBBBBA
+      resource_id: 12345671
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        resourceTags/user:openshift_cluster: ocp4-shared-cluster-prod
+  - EC2Generator:
+      # master
+      start_date: 2019-04-01
+      end_date: 2019-08-30
+      processor_arch: 64-bit
+      resource_id: 55555555
+      product_sku: VEAJHRNKTJZQ
+      region: us-east-2a
+      tags:
+        resourceTags/user:version: prod
+        resourceTags/user:openshift_cluster: ocp4-shared-cluster-prod
+        resourceTags/user:ocp-function: worker
+      instance_type:
+        inst_type: m5.2xlarge
+        vcpu: 8
+        memory: '32 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.384
+        rate: 0.384
+  - EBSGenerator:
+      start_date: 2019-04-01
+      end_date: 2019-08-30
+      product_sku: VEAJHRNBBBBA
+      resource_id: 12345671
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        resourceTags/user:openshift_cluster: ocp4-shared-cluster-prod
+  - EC2Generator:
+    # worker
+      start_date: 2019-04-01
+      end_date: 2019-08-30
+      processor_arch: 64-bit
+      resource_id: 55555556
+      product_sku: VEAJHRNKTJAA
+      region: us-east-2a
+      tags:
+        resourceTags/user:environment: dev
+        resourceTags/user:openshift_cluster: ocp4-shared-cluster-prod
+        resourceTags/user:version: beta
+        resourceTags/user:ocp-function: master
+      instance_type:
+        inst_type: m5.4xlarge
+        vcpu: 16
+        memory: '64 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.768
+        rate: 0.768
+  - EBSGenerator:
+      start_date: 2019-04-01
+      end_date: 2019-08-30
+      product_sku: VEAJHRNBBBBA
+      resource_id: 12345671
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        resourceTags/user:openshift_cluster: ocp4-shared-cluster-prod
+  - EBSGenerator:
+      start_date: 2019-04-01
+      end_date: 2019-08-30
+      product_sku: VEAJHRNBBBBA
+      resource_id: 12345671
+      amount: 20
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        resourceTags/user:openshift_cluster: ocp4-shared-cluster-prod
+  - EBSGenerator:
+      start_date: 2019-04-01
+      end_date: 2019-08-30
+      product_sku: VEAJHRNBBBBA
+      resource_id: 12345671
+      amount: 10
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        resourceTags/user:openshift_cluster: ocp4-shared-cluster-prod
+
