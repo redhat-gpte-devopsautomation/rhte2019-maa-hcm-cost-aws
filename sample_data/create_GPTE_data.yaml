@@ -1,0 +1,67 @@
+---
+
+- name: generate nise data
+  hosts: localhost
+  gather_facts: false
+  vars:
+    ilts:
+      - start_date: 2019-04-08
+        end_date: 2019-04-12
+        class_session_id: ocp4-deployment_teacher1
+
+      - start_date: 2019-05-06
+        end_date: 2019-05-10
+        class_session_id: ocp4-deployment_teacher1
+      - start_date: 2019-05-13
+        end_date: 2019-05-17
+        class_session_id: ocp4-deployment_teacher2
+
+      - start_date: 2019-06-03
+        end_date: 2019-06-07
+        class_session_id: ocp4-deployment_teacher1
+      - start_date: 2019-06-03
+        end_date: 2019-06-07
+        class_session_id: ocp4-deployment_teacher2
+      - start_date: 2019-06-17
+        end_date: 2019-06-21
+        class_session_id: ocp4-deployment_teacher3
+
+      - start_date: 2019-07-08
+        end_date: 2019-07-12
+        class_session_id: ocp4-deployment_teacher1
+      - start_date: 2019-07-08
+        end_date: 2019-07-12
+        class_session_id: ocp4-deployment_teacher2
+      - start_date: 2019-07-15
+        end_date: 2019-07-19
+        class_session_id: ocp4-deployment_teacher3
+      - start_date: 2019-07-29
+        end_date: 2019-08-02
+        class_session_id: ocp4-deployment_teacher4
+
+      - start_date: 2019-08-12
+        end_date: 2019-08-16
+        class_session_id: ocp4-deployment_teacher1
+      - start_date: 2019-08-12
+        end_date: 2019-08-16
+        class_session_id: ocp4-deployment_teacher2
+      - start_date: 2019-08-19
+        end_date: 2019-08-23
+        class_session_id: ocp4-deployment_teacher3
+      - start_date: 2019-08-19
+        end_date: 2019-08-23
+        class_session_id: ocp4-deployment_teacher4
+      - start_date: 2019-08-26
+        end_date: 2019-08-30
+        class_session_id: ocp4-deployment_teacher5
+
+  tasks:
+    - name: ILTs AWS
+      template:
+        src: ./aws_gpte_sample_ILT.j2
+        dest: ./output/aws_gpte_sample_ILT.yaml
+
+    - name: ILTs OCP
+      template:
+        src: ./ocp_gpte_sample_ILT.j2
+        dest: ./output/ocp_gpte_sample_ILT.yaml

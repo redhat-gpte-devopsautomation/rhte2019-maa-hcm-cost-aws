@@ -1,0 +1,389 @@
+---
+generators:
+{% for i in ilts %}
+  {% set ilt_loop = loop %}
+  {# i.start_date, i.end_date, and i.class_session_id #}
+  {% for student in range(1, 20) %}
+    {% set class_session_id = i.class_session_id + "_student_" + student|string %}
+    {# resource_id:  date ilt# student# #}
+    {% set resource_id_base = i.start_date|replace("-","") + '%02d'|format(ilt_loop.index) + '%02d'|format(student) %}
+# example ILT
+# 4 EIPs
+# 1 client-vm
+# 3 masters
+#   1 EBS volume
+# 3 workers
+#   2 EBS volumes
+# 2 S3 buckets
+#
+# ILT {{ ilt_loop.index }}
+  # student {{ student }}
+#
+# start AWS template
+#
+
+  - VPCGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      tags:
+        resourceTags/user:app: cost
+        class_session_id: "{{ class_session_id }}"
+  - Route53Generator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      # product_family: DNS Zone
+      tags:
+        resourceTags/user:app: catalog
+        class_session_id: "{{ class_session_id }}"
+  - Route53Generator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_family: DNS Query
+      tags:
+        resourceTags/user:app: cost
+        class_session_id: "{{ class_session_id }}"
+  - Route53Generator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_family: DNS Query
+      tags:
+        resourceTags/user:app: analytics
+        class_session_id: "{{ class_session_id }}"
+  - S3Generator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNAAAAA
+      amount: 500
+      rate: 0.023
+      tags:
+        resourceTags/user:storageclass: charlie
+        class_session_id: "{{ class_session_id }}"
+
+  - EC2Generator:
+      # client-vm
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      processor_arch: 64-bit
+      resource_id: "{{ resource_id_base }}a"
+      product_sku: VEAJHRNKTJZQ
+      region: us-east-2a
+      tags:
+        resourceTags/user:version: "1.0"
+        class_session_id: "{{ class_session_id }}"
+      instance_type:
+        inst_type: t2.medium
+        vcpu: 2
+        memory: '4 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.0464
+        rate: 0.0464
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}a"
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: alpha
+        class_session_id: "{{ class_session_id }}"
+
+  - EC2Generator:
+      # master 1
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      processor_arch: 64-bit
+      resource_id: "{{ resource_id_base }}m1"
+      product_sku: VEAJHRNKTJZQ
+      region: us-east-2a
+      tags:
+        resourceTags/user:version: "1.0"
+        class_session_id: "{{ class_session_id }}"
+        resourceTags/user:ocp-function: master
+      instance_type:
+        inst_type: m5.2xlarge
+        vcpu: 8
+        memory: '32 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.384
+        rate: 0.384
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}m1"
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+
+  - EC2Generator:
+      # master 2
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      processor_arch: 64-bit
+      resource_id: "{{ resource_id_base }}m2"
+      product_sku: VEAJHRNKTJZQ
+      region: us-east-2b
+      tags:
+        resourceTags/user:version: "1.0"
+        class_session_id: "{{ class_session_id }}"
+        resourceTags/user:ocp-function: master
+      instance_type:
+        inst_type: m5.2xlarge
+        vcpu: 8
+        memory: '32 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.384
+        rate: 0.384
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}m2"
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+
+  - EC2Generator:
+      # master 3
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      processor_arch: 64-bit
+      resource_id: "{{ resource_id_base }}m3"
+      product_sku: VEAJHRNKTJZQ
+      region: us-east-2c
+      tags:
+        resourceTags/user:version: "1.0"
+        class_session_id: "{{ class_session_id }}"
+        resourceTags/user:ocp-function: master
+      instance_type:
+        inst_type: m5.2xlarge
+        vcpu: 8
+        memory: '32 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.384
+        rate: 0.384
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}m3"
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+
+  - EC2Generator:
+      # worker 1
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      processor_arch: 64-bit
+      resource_id: "{{ resource_id_base }}w1"
+      product_sku: VEAJHRNKTJAA
+      region: us-east-2a
+      tags:
+        resourceTags/user:environment: dev
+        class_session_id: "{{ class_session_id }}"
+        resourceTags/user:version: beta
+        resourceTags/user:ocp-function: worker
+      instance_type:
+        inst_type: m5.xlarge
+        vcpu: 4
+        memory: '16 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.192
+        rate: 0.192
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      resource_id: "{{ resource_id_base }}w1"
+      resource_id: 12345671
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}w1"
+      amount: 20
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}w1"
+      amount: 10
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+
+
+  - EC2Generator:
+      # worker 2
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      processor_arch: 64-bit
+      resource_id: "{{ resource_id_base }}w2"
+      product_sku: VEAJHRNKTJAA
+      region: us-east-2a
+      tags:
+        resourceTags/user:environment: dev
+        class_session_id: "{{ class_session_id }}"
+        resourceTags/user:version: beta
+        resourceTags/user:ocp-function: worker
+      instance_type:
+        inst_type: m5.xlarge
+        vcpu: 4
+        memory: '16 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.192
+        rate: 0.192
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      resource_id: "{{ resource_id_base }}w2"
+      resource_id: 12345671
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}w2"
+      amount: 20
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}w2"
+      amount: 10
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+
+
+  - EC2Generator:
+      # worker 1
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      processor_arch: 64-bit
+      resource_id: "{{ resource_id_base }}w3"
+      product_sku: VEAJHRNKTJAA
+      region: us-east-2a
+      tags:
+        resourceTags/user:environment: dev
+        class_session_id: "{{ class_session_id }}"
+        resourceTags/user:version: beta
+        resourceTags/user:ocp-function: worker
+      instance_type:
+        inst_type: m5.xlarge
+        vcpu: 4
+        memory: '16 GiB'
+        storage: 'EBS Only'
+        family: 'General Purpose'
+        cost: 0.192
+        rate: 0.192
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      resource_id: "{{ resource_id_base }}w3"
+      resource_id: 12345671
+      amount: 120
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}w3"
+      amount: 20
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+  - EBSGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNBBBBA
+      resource_id: "{{ resource_id_base }}w3"
+      amount: 10
+      rate: 0.1
+      tags:
+        resourceTags/user:storageclass: bravo
+        class_session_id: "{{ class_session_id }}"
+
+  - DataTransferGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNKTJZQ
+      resource_id: "{{ resource_id_base }}a"
+      tags:
+        resourceTags/user:app: analytics
+        class_session_id: "{{ class_session_id }}"
+  - DataTransferGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNKTJAA
+      resource_id: "{{ resource_id_base }}a"
+      tags:
+        resourceTags/user:app: cost
+        class_session_id: "{{ class_session_id }}"
+  - DataTransferGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNKTJAB
+      resource_id: "{{ resource_id_base }}b"
+      tags:
+        resourceTags/user:app: catalog
+        class_session_id: "{{ class_session_id }}"
+  - DataTransferGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNKTJAC
+      resource_id: "{{ resource_id_base }}c"
+      tags:
+        resourceTags/user:app: catalog
+        class_session_id: "{{ class_session_id }}"
+  - DataTransferGenerator:
+      start_date: "{{ i.start_date }}"
+      end_date: "{{ i.end_date }}"
+      product_sku: VEAJHRNAAAAA
+      resource_id: "{{ resource_id_base }}d"
+      tags:
+        resourceTags/user:app: cost
+        class_session_id: "{{ class_session_id }}"
+
+#
+# end AWS template
+#
+
+{% endfor %}
+{% endfor %}
