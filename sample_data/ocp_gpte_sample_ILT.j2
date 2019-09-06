@@ -1,5 +1,3 @@
----
-generators:
 {% for i in ilts %}
   {% set ilt_loop = loop %}
   {# i.start_date, i.end_date, and i.class_session_id #}
@@ -21,6 +19,8 @@ generators:
 #
 # OpenShift ILT resources
 #
+---
+generators:
 - OCPGenerator:
     start_date: "{{ i.start_date }}"
     end_date: "{{ i.end_date }}"
