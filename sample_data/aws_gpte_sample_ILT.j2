@@ -27,28 +27,28 @@ generators:
       end_date: "{{ i.end_date }}"
       tags:
         resourceTags/user:app: cost
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       # product_family: DNS Zone
       tags:
         resourceTags/user:app: catalog
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_family: DNS Query
       tags:
         resourceTags/user:app: cost
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_family: DNS Query
       tags:
         resourceTags/user:app: analytics
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - S3Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -57,7 +57,7 @@ generators:
       rate: 0.023
       tags:
         resourceTags/user:storageclass: charlie
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
   - EC2Generator:
       # client-vm
@@ -69,7 +69,7 @@ generators:
       region: us-east-1a
       tags:
         resourceTags/user:version: "1.0"
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
       instance_type:
         inst_type: t2.medium
         vcpu: 2
@@ -87,7 +87,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: alpha
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
   - EC2Generator:
       # master 1
@@ -99,8 +99,8 @@ generators:
       region: us-east-1a
       tags:
         resourceTags/user:version: "1.0"
-        class_session_id: "{{ class_session_id }}"
-        resourceTags/user:ocp-function: master
+        # class_session_id: "{{ class_session_id }}"
+        # resourceTags/user:ocp-function: master
       instance_type:
         inst_type: m5.2xlarge
         vcpu: 8
@@ -118,7 +118,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
   - EC2Generator:
       # master 2
@@ -130,8 +130,8 @@ generators:
       region: us-east-1a
       tags:
         resourceTags/user:version: "1.0"
-        class_session_id: "{{ class_session_id }}"
-        resourceTags/user:ocp-function: master
+        # class_session_id: "{{ class_session_id }}"
+        # resourceTags/user:ocp-function: master
       instance_type:
         inst_type: m5.2xlarge
         vcpu: 8
@@ -149,7 +149,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
   - EC2Generator:
       # master 3
@@ -161,8 +161,8 @@ generators:
       region: us-east-1a
       tags:
         resourceTags/user:version: "1.0"
-        class_session_id: "{{ class_session_id }}"
-        resourceTags/user:ocp-function: master
+        # class_session_id: "{{ class_session_id }}"
+        # resourceTags/user:ocp-function: master
       instance_type:
         inst_type: m5.2xlarge
         vcpu: 8
@@ -180,7 +180,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
   - EC2Generator:
       # worker 1
@@ -192,9 +192,9 @@ generators:
       region: us-east-1a
       tags:
         resourceTags/user:environment: dev
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
         resourceTags/user:version: beta
-        resourceTags/user:ocp-function: worker
+        # resourceTags/user:ocp-function: worker
       instance_type:
         inst_type: m5.xlarge
         vcpu: 4
@@ -212,7 +212,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -222,7 +222,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -232,7 +232,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
 
   - EC2Generator:
@@ -245,9 +245,9 @@ generators:
       region: us-east-1a
       tags:
         resourceTags/user:environment: dev
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
         resourceTags/user:version: beta
-        resourceTags/user:ocp-function: worker
+        # resourceTags/user:ocp-function: worker
       instance_type:
         inst_type: m5.xlarge
         vcpu: 4
@@ -265,7 +265,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -275,7 +275,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -285,7 +285,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
 
   - EC2Generator:
@@ -298,9 +298,9 @@ generators:
       region: us-east-1a
       tags:
         resourceTags/user:environment: dev
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
         resourceTags/user:version: beta
-        resourceTags/user:ocp-function: worker
+        # resourceTags/user:ocp-function: worker
       instance_type:
         inst_type: m5.xlarge
         vcpu: 4
@@ -318,7 +318,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -328,7 +328,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -338,7 +338,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: bravo
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
@@ -347,7 +347,7 @@ generators:
       resource_id: "{{ resource_id_base }}a"
       tags:
         resourceTags/user:app: analytics
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -355,7 +355,7 @@ generators:
       resource_id: "{{ resource_id_base }}a"
       tags:
         resourceTags/user:app: cost
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -363,7 +363,7 @@ generators:
       resource_id: "{{ resource_id_base }}b"
       tags:
         resourceTags/user:app: catalog
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -371,7 +371,7 @@ generators:
       resource_id: "{{ resource_id_base }}c"
       tags:
         resourceTags/user:app: catalog
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -379,7 +379,7 @@ generators:
       resource_id: "{{ resource_id_base }}d"
       tags:
         resourceTags/user:app: cost
-        class_session_id: "{{ class_session_id }}"
+        # class_session_id: "{{ class_session_id }}"
 
 #
 # end AWS template
