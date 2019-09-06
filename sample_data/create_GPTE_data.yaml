@@ -65,3 +65,8 @@
       template:
         src: ./ocp_gpte_sample_ILT.j2
         dest: ./output/ocp_gpte_sample_ILT.yaml
+
+    - name: csplit ocpfiles
+      command: csplit -f "ocp_sample_" -b "%04d.yaml"  ocp_gpte_sample_ILT.yaml /---/ {*}
+        chdir: output/
+
