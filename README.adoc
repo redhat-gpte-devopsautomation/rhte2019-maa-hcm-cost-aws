@@ -235,7 +235,42 @@ $ oc get reportqueries.metering.openshift.io
 $ oc get reportdatasources.metering.openshift.io
 ----
 
-== Create 
+== Create your OCP Source in HCCM
+
+* Lookup your Cluster Identifier
+
+The `ocp_usage.sh` script keeps its configuration data in the filesystem of the bastion host.  The directory names under `$HOME/.config/ocp_usage/` are the cluster identifiers.
+
+.Examine the Configs
+[source,bash]
+----
+$ cat $HOME/.config/ocp_usage/*/config.json
+----
++
+.Sample Output:
+[source,text]
+----
+{
+    "ocp_api": "https://api.cluster-7371.7371.sandbox448.opentlc.com:6443", #<1>
+    "ocp_token_file": "/home/ec2-user/7371.token", #<2>
+    "ocp_cluster_id": "a1d4986f-eb03-57a9-bd1d-2ed6a9af4da0", #<3>
+    "ocp_metering_namespace": "openshift-metering", #<4>
+    "ocp_cli": "/usr/bin/oc", #<5>
+    "ocp_validate_cert": "False", #<6>
+    "metering_api": "https://metering-openshift-metering.apps.cluster-7371.7371.sandbox448.opentlc.com" #<7>
+}
+----
+<1> The `ocp_usage.sh` collector will access the OpenShift cluster through the API endpoing.  Get it with `oc whoami --show-server`
+<2> The token that belongs to the service account that was created to display reports. Get it with `oc serviceaccounts get-token reporting-operator -n openshift-metering`
+<3> The cluster identifier used between the `ocp_usage.sh` scripts and the HCCM SaaS.
+<4> The Metering Operator namespace.
+<5> The `oc` command line tool appropriate for accessing this cluster.  Might need an `oc` client version 3 for older clusters.
+<6> Certs are optional, though encouraged.
+<7> The Route to the Reporting system to gather report to upload via `insights-client`.  Get it with `oc get route -n openshift-metering metering -o=jsonpath='{.status.ingress[0].host}'
+
+* Add the Cluster through the GUI
+
+* Wait a few hours
 
 == Business Analysis Scenario
 
