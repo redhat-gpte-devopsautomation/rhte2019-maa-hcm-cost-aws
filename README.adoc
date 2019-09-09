@@ -81,6 +81,7 @@ Each infrastructure system has its own limitations in their tagging and labeling
 
 == Examine Cost Management on AWS
 
+* Observe the Setup of AWS 
 * Open AWS to find Tags Available
 * Open Cost Management to find Tags available
 *
@@ -88,10 +89,151 @@ Each infrastructure system has its own limitations in their tagging and labeling
 
 == Examine Cost Management on OCP4
 
+
 * Examine how Cost Management is Deployed on OCP4
 * The Metering Operator
+
+.The Metering Catalog Source
+[source]
+----
+$ oc get catalogsource -A
+----
++
+.Example Output
+----
+NAMESPACE                              NAME                       NAME                  TYPE       PUBLISHER   AGE
+openshift-logging                      cluster-logging-operator   Custom                grpc       Custom      6d3h
+openshift-marketplace                  certified-operators        Certified Operators   grpc       Red Hat     6d4h
+openshift-marketplace                  community-operators        Community Operators   grpc       Red Hat     6d4h
+openshift-marketplace                  redhat-operators           Red Hat Operators     grpc       Red Hat     6d4h
+openshift-metering                     metering-operators         Custom                grpc       Custom      6d3h
+openshift-operator-lifecycle-manager   olm-operators              OLM Operators         internal   Red Hat     6d4h
+openshift-operators                    elasticsearch-operator     Custom                grpc       Custom      6d3h
+----
+
+.The Metering Subscription
+[source]
+----
+$ oc get subscriptions.operators.coreos.com -A
+----
++
+.Example Output
+----
+NAMESPACE                              NAME                     PACKAGE                  SOURCE                     CHANNEL
+openshift-logging                      cluster-logging          cluster-logging          cluster-logging-operator   preview
+openshift-metering                     metering                 metering                 metering-operators         preview
+openshift-operator-lifecycle-manager   packageserver            packageserver            olm-operators              alpha
+openshift-operators                    elasticsearch-operator   elasticsearch-operator   elasticsearch-operator     preview
+----
+
+.The Metering Custom Resource
+[source]
+----
+$ oc describe meterings.metering.openshift.io operator-metering
+----
++
+.Example Output
+[source]
+----
+Name:         operator-metering
+Namespace:    openshift-metering
+Labels:       <none>
+Annotations:  <none>
+API Version:  metering.openshift.io/v1alpha1
+Kind:         Metering
+Metadata:
+  Creation Timestamp:  2019-09-03T17:32:17Z
+  Generation:          6
+  Resource Version:    1824854
+  Self Link:           /apis/metering.openshift.io/v1alpha1/namespaces/openshift-metering/meterings/operator-metering
+  UID:                 c6d01c80-ce70-11e9-ae9b-021aec9d41ee
+Spec:
+  Hdfs:
+    Spec:
+      Datanode:
+        Resources: [ommitted]
+      Namenode:
+        Resources: [ommitted]
+  Presto:
+    Spec:
+      Hive:
+        Metastore:
+          Resources: [omitted]
+          Storage:
+            Size:  10Gi
+        Server:
+          Resources:
+[omitted]
+      Presto:
+        Coordinator:
+          Resources: [omitted]
+        Worker:
+          Replicas:  1
+          Resources: [omitted]
+  Reporting - Operator:
+    Spec:
+      Auth Proxy:
+        Cookie Seed:                    7091da5a0a374e4a92a9356c963e1690
+        Delegate UR Ls Enabled:         true
+        Enabled:                        true
+        Subject Access Review Enabled:  true
+      Resources: [omitted]
+      Route:
+        Enabled:  true
+Status:
+  Observed Version:  680107
+Events:              <none>
+----
+
+.Pods in the Metering Namespace
+[source]
+----
+$ oc get pods -n openshift-metering
+----
++
+.Example Output
+----
+NAME                                  READY   STATUS    RESTARTS   AGE
+hdfs-datanode-0                       1/1     Running   1          6d3h
+hdfs-namenode-0                       1/1     Running   1          6d3h
+hive-metastore-0                      1/1     Running   1          6d3h
+hive-server-0                         1/1     Running   1          6d3h
+metering-operator-698f55bb84-fx5zl    2/2     Running   2          4d16h
+presto-coordinator-7c57b6dfb5-cndbx   1/1     Running   1          4d16h
+presto-worker-69f6f8c587-697g4        1/1     Running   1          6d3h
+reporting-operator-6b5fdc8b5c-29qnx   2/2     Running   3          6d3h
+----
+
 * Cost Reports
 
+.HCCM Reports created by HCCM installer
+[source]
+----
+$ oc get reports
+----
++
+.Example Output
+----
+NAME                                            QUERY                                           SCHEDULE   RUNNING                  FAILED   LAST REPORT TIME       AGE
+hccm-openshift-persistentvolumeclaim            hccm-openshift-persistentvolumeclaim            hourly     ReportingPeriodWaiting            2019-09-09T21:00:00Z   6d3h
+hccm-openshift-persistentvolumeclaim-lookback   hccm-openshift-persistentvolumeclaim-lookback   hourly     ReportingPeriodWaiting            2019-09-09T21:00:00Z   6d3h
+hccm-openshift-usage                            hccm-openshift-usage                            hourly     ReportingPeriodWaiting            2019-09-09T21:00:00Z   6d3h
+hccm-openshift-usage-lookback                   hccm-openshift-usage-lookback                   hourly     ReportingPeriodWaiting            2019-09-09T21:00:00Z   6d3h
+----
+
+* More things to try:
+
+.Hadoop Queries
+[source]
+----
+$ oc get reportqueries.metering.openshift.io
+----
+
+.Hadoop DataSources
+[source]
+----
+$ oc get reportdatasources.metering.openshift.io
+----
 
 == Create 
 
