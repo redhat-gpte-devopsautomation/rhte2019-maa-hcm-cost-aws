@@ -1,12 +1,16 @@
+:toc:
+
 = Red Hat Tech Exchange 2019
 
+
 == A2003 Hybrid Cloud Management - Cost Management on AWS
+
 
 `rhte2019-maa-hcm-cost-aws`
 
 Welcome to the 2019 HCM Cost Management with OpenShift and AWS Lab
 
-Red Hat is in the midst of developing SaaS offerings for our customer base all available at https://cloud.redhat.com and https://cloud.openshift.com. One of the early offerings will be Hybrid Cloud Cost Management. It is an Open Source project called "Koku" hosted at https://github.com/project-koku/ with documentation at https://koku.readthedocs.io/en/latest/
+Red Hat is in the midst of developing SaaS offerings for our customer base all available at link:https://cloud.redhat.com[^] and link:https://cloud.openshift.com[^]. One of the early offerings will be Hybrid Cloud Cost Management. It is an Open Source project called "Koku" hosted at link:https://github.com/project-koku/[^] with documentation at link:https://koku.readthedocs.io/en/latest/[^]
 
 Cost Management reveals the true costs of Business Initiatives.  It does so by appropriately tagging and labeling the resources used by an initiative and offering appropriate reporting on them. Most cloud platforms offer hourly reports on the costs of resources consumed, and when properly labeled and tagged, analysts can report on them.   Further features like forecasting, price-markups, etc. are forthcoming.
 
@@ -27,32 +31,38 @@ In this lab you will:
 * Forecast the cost of the Business's proposed Initiatives
 
 [WARNING]
-Hybrid Cloud Cost Managment is in the ALPHA state.  Not all features are expected to work.  Your suggestions for improvements and features are welcome.
+Hybrid Cloud Cost Managment is in the *BETA* state.  Not all features are expected to work.  Your suggestions for improvements and features are welcome.
 
 
 [NOTE]
-####
 *OCP Usage Data Upload*
-
-Upon General Availability, HCCM will upload usage data via the separate project OpenShift Telemetry (https://docs.openshift.com/container-platform/4.1/telemetry/about-telemetry.html).  Until the products are integrated and are GA, a sub-project called "katakura" is supplied by the Cost Management team to upload data from OpenShift to the HCCM SaaS.
-####
+Upon General Availability, HCCM will upload usage data via the separate project OpenShift Telemetry (link:https://docs.openshift.com/container-platform/4.1/telemetry/about-telemetry.html[OpenShift Telemetry^]).  Until the products are integrated and are GA, a sub-project called "katakura" is supplied by the Cost Management team to upload data from OpenShift to the HCCM SaaS.
 
 
-=== Infrastructure
+=== Infrastructure and Accounts
 
 * Your OCP4 Cluster - one small OCP4 cluster
-** Metering Operator already installed. Learn more at https://github.com/operator-framework/operator-metering
-* Your AWS Sandbox Account
+** 1 Master, 3 workers, 1 bastion
+** OpenShift Web Console: `admin` `rhte2019`
+** Metering Operator already installed. Learn more at link:https://github.com/operator-framework/operator-metering[^]
+
 * Your Bastion Host
-** OCP 4 Installer
-** OCP `oc` client
+** Bastion SSH: `lab-user` `rhte2019`
+** OCP 4 Installer - already complete
+** OCP `oc` client - `system:admin` keys setup
 ** Cost Collector (sub-project "katakura") already installed and configured
-* The Cost Management SaaS accounts served from https://cloud.redhat.com/hybrid/cost-management/
+
+* Your AWS Sandbox Account
+** CLI access ONLY (sorry)
+** Details are custom to each student, via email
+*** aws access key id
+*** aws secret access key
+
+* The Cost Management SaaS accounts served from link:https://cloud.redhat.com/hybrid/cost-management/[^] 
 ** Red Hat Tech Exchange - Management Business Unit Account 1 - Number: 6289400 (rhte19mbu1org)
-***  Live data where you will add your clusters as a data source
+*** Live data where you will add your clusters as a data source
 ** Account 2 - Number: 6289402 (rhte19mbu2org)
 *** Static Sample data where you can see an example of Tags and Labels working together
-
 
 === Prerequisites
 
@@ -69,72 +79,130 @@ ssh lab-user@bastion.b1fa.sandbox23.opentlc.com
 +
 this means that your GUID is b1fa and your Sandbox Number is 23.
 
-=== User Accounts
-
-* Bastion SSH:  `lab-user` `rhte2019`
-* OpenShift Web Console: `admin` `rhte2019`
-
-
 == Examine Cost Management on AWS
+
+Your cloud provider is the first stop in gathering cost information.  The Cost Management will support both AWS and Azure, with more platforms coming.  We'll focus on AWS.
+
+AWS reports costs for consumption by third parties via a feature called "AWS Cost and Usage Reports."  The AWS root account can setup these reports, including the level of data detail and the AWS tags that are included. AWS generates CSV files and places them in special S3 buckets almost hourly.  Red Hat Cost Managemetn gathers these logs from the S3 bucket almost hourly and processes them.  Since you only have an AWS "linked" account, not a root account, you will not be able to alter the configuration of AWS cost reporting.  Sorry about that.  We'll do our best to show them to you.
+
+Here's how they're setup in AWS and the Red Hat HCCM SaaS:
 
 * Observe the Setup of AWS for Cost Management
 
 :imagesdir: images/
 
+
 . Turn on AWS Cost and Usage Reports
 +
-image::01_aws_billing_console.png[]
-+
+
++++ <details><summary> +++
+Click me!
++++ </summary><div> +++
+image:01_aws_billing_console.png[]
++++ </div></details> +++
+
 . There's already a Cost and Usage Report already setup for the *rhte19mbu1org*
 +
-image::02_aws_cost_and_usage_reports.png[]
-+
+
++++ <details><summary> +++
++++ </summary><div> +++
+image:02_aws_cost_and_usage_reports.png[]
++++ </div></details> +++
+
 . AWS is generating the reports and putting them in a bucket named *rhte19mbu1org*
 +
-image::03_aws_report_details.png[]
-+
+
++++ <details><summary> +++
++++ </summary><div> +++
+image:03_aws_report_details.png[]
++++ </div></details> +++
+
 . AWS has already filled the bucket with some information for September 2019
 +
-image::04_aws_populated_bucket.png[]
-+
++++ <details><summary> +++
++++ </summary><div> +++
+image:04_aws_populated_bucket.png[]
++++ </div></details> +++
+
 . To protect the bucket and allow only the HCCM SaaS access to the bucket, a policy is created.
 +
-image::05_aws_iam_policies.png[]
-+
++++ <details><summary> +++
++++ </summary><div> +++
+image:05_aws_iam_policies.png[]
++++ </div></details> +++
+
 . Red Hat HCCM accesses the bucket based on a strict access policy
 +
-image::06_aws_policy_detail.png[]
-+
++++ <details><summary> +++
++++ </summary><div> +++
+image:06_aws_policy_detail.png[]
++++ </div></details> +++
+
 . An AWS Role is created to join the policy governing bucket access with the HCCM root account as a Trust Relationship.
 +
-image::07_aws_role_with_policy.png[]
-+
++++ <details><summary> +++
++++ </summary><div> +++
+image:07_aws_role_with_policy.png[]
++++ </div></details> +++
+
 . Finally, select AWS tags that will be used by AWS to report resource utilization.
 +
-image::08_aws_cost_allocation_tags.png[]
++++ <details><summary> +++
++++ </summary><div> +++
+image:08_aws_cost_allocation_tags.png[]
++++ </div></details> +++
+
+. Now, changing to the HCCM "Cost Management Sources" GUI in  link:https://cloud.redhat.com/hybrid/cost-management/sources[^] and an AWS source by indicating the bucket name and role created above.
 +
-. Now, changing to the HCCM "Cost Management Sources" GUI in https://cloud.redhat.com/hybrid/cost-management/sources and an AWS source by indicating the bucket name and role created above.
-+
-image::09_cost_aws_source_added.png[]
-+
++++ <details><summary> +++
++++ </summary><div> +++
+image:09_cost_aws_source_added.png[]
++++ </div></details> +++
+
 . Within a few hours, the cloud tags should appear in the HCCM "Cloud Details" GUI.  You can then group your costs by these tags and begin getting insights into the cost of your business initiatives. link:https://cloud.redhat.com/hybrid/cost-management/aws?group_by[account]=*&order_by[cost]=desc
 +
-image::10_cost_aws_cloud_tags_available.png[]
-
++++ <details><summary> +++
++++ </summary><div> +++
+image:10_cost_aws_cloud_tags_available.png[]
++++ </div></details> +++
 
 == Examine Cost Management on OCP4
 
-
 * Examine how Cost Management is Deployed on OCP4
-* The Metering Operator
 
-.The Metering Catalog Source
+On the bastion host, use the `oc` tool to talk to the API and learn about the Metering Operator
+
+. SSH from your laptop to the Bastion
++
+[source]
+----
+$ ssh lab-user@<bastion>
+----
++
+NOTE: If you have trouble logging in, ask one of the lab assistants
+
+. A dedicated namespace was create for OpenShift Metering
++
+[source]
+----
+$ oc project openshift-metering
+----
++
+.Sample Output:
+[source,text]
+----
+Now using project "openshift-metering" on server "https://api.shared.na.openshift.opentlc.com:6443".
+----
+
+. The Metering Operator was made available to the cluster via the Metering Catalog Source
++
 [source]
 ----
 $ oc get catalogsource -A
 ----
 +
-.Example Output
+.Sample Output:
+[source,options="nowrap"]
 ----
 NAMESPACE                              NAME                       NAME                  TYPE       PUBLISHER   AGE
 openshift-logging                      cluster-logging-operator   Custom                grpc       Custom      6d3h
@@ -146,28 +214,104 @@ openshift-operator-lifecycle-manager   olm-operators              OLM Operators 
 openshift-operators                    elasticsearch-operator     Custom                grpc       Custom      6d3h
 ----
 
-.The Metering Subscription
+. It needs an OLM OperatorGroup to define relationships between operators. (More OLM info link:https://docs.openshift.com/container-platform/4.1/applications/operators/olm-understanding-olm.html#olm-operatorgroups_olm-understanding-olm[here^].)
++
 [source]
 ----
-$ oc get subscriptions.operators.coreos.com -A
+$ oc get operatorgroup metering-operators -n openshift-metering -oyaml
 ----
 +
-.Example Output
-----
-NAMESPACE                              NAME                     PACKAGE                  SOURCE                     CHANNEL
-openshift-logging                      cluster-logging          cluster-logging          cluster-logging-operator   preview
-openshift-metering                     metering                 metering                 metering-operators         preview
-openshift-operator-lifecycle-manager   packageserver            packageserver            olm-operators              alpha
-openshift-operators                    elasticsearch-operator   elasticsearch-operator   elasticsearch-operator     preview
-----
 
-.The Metering Custom Resource
++++ <details><summary> +++
+_Sample Output_
++++ </summary><div> +++
++
+----
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    olm.providedAPIs: HiveTable.v1alpha1.metering.openshift.io,Metering.v1alpha1.metering.openshift.io,PrestoTable.v1alpha1.metering.openshift.io,Report.v1alpha1.metering.openshift.io,ReportDataSource.v1alpha1.metering.openshift.io,ReportQuery.v1alpha1.metering.openshift.io,StorageLocation.v1alpha1.metering.openshift.io
+  creationTimestamp: 2019-09-03T21:42:54Z
+  generation: 2
+  name: metering-operators
+  namespace: openshift-metering
+  resourceVersion: "71746600"
+  selfLink: /apis/operators.coreos.com/v1/namespaces/openshift-metering/operatorgroups/metering-operators
+  uid: c998fe67-ce93-11e9-b5d9-0a16ab677b4c
+spec:
+  serviceAccount:
+    metadata:
+      creationTimestamp: null
+  targetNamespaces:
+  - openshift-metering
+status:
+  lastUpdated: 2019-09-03T21:42:54Z
+  namespaces:
+  - openshift-metering
+----
++++ </div></details> +++
+
+
+. The Metering Subscription is also part of the OLM and defines which version and channel
++
+[source,bash]
+----
+$ oc get subscriptions.operators.coreos.com metering -n openshift-metering -oyaml
+----
++++ <details><summary> +++
+_Sample Output_
++++ </summary><div> +++
++
+----
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  creationTimestamp: "2019-09-10T15:45:14Z"
+  generation: 1
+  labels:
+    csc-owner-name: installed-community-openshift-metering
+    csc-owner-namespace: openshift-marketplace
+  name: metering
+  namespace: openshift-metering
+  resourceVersion: "20929"
+  selfLink: /apis/operators.coreos.com/v1alpha1/namespaces/openshift-metering/subscriptions/metering
+  uid: fb4f6b21-d3e1-11e9-9c86-06ae53090800
+spec:
+  channel: preview
+  name: metering
+  source: metering-operators
+  sourceNamespace: openshift-metering
+status:
+  currentCSV: metering-operator.v4.1.0
+  installPlanRef:
+    apiVersion: operators.coreos.com/v1alpha1
+    kind: InstallPlan
+    name: install-ln82l
+    namespace: openshift-metering
+    resourceVersion: "20867"
+    uid: 341e2c12-d3e2-11e9-8f8b-06ae53090800
+  installedCSV: metering-operator.v4.1.0
+  installplan:
+    apiVersion: operators.coreos.com/v1alpha1
+    kind: InstallPlan
+    name: install-ln82l
+    uuid: 341e2c12-d3e2-11e9-8f8b-06ae53090800
+  lastUpdated: "2019-09-10T15:46:51Z"
+  state: AtLatestKnown
+----
++++ </div></details> +++
+
+. Finally, we actually kicked off the Metering install by creating the Metering Custom Resource
++
 [source]
 ----
 $ oc describe meterings.metering.openshift.io operator-metering
 ----
++++ <details><summary> +++
+_Sample Output_
++++ </summary><div> +++
 +
-.Example Output
 [source]
 ----
 Name:         operator-metering
@@ -219,14 +363,16 @@ Status:
   Observed Version:  680107
 Events:              <none>
 ----
++++ </div></details> +++
 
-.Pods in the Metering Namespace
+. After a while, check it out, there are pods in the Metering Namespace.  The metering operator is an implementation of hdfs, i.e. Hadoop.  *_Big Data_*
++
 [source]
 ----
 $ oc get pods -n openshift-metering
 ----
 +
-.Example Output
+.Sample Output:
 ----
 NAME                                  READY   STATUS    RESTARTS   AGE
 hdfs-datanode-0                       1/1     Running   1          6d3h
@@ -239,15 +385,15 @@ presto-worker-69f6f8c587-697g4        1/1     Running   1          6d3h
 reporting-operator-6b5fdc8b5c-29qnx   2/2     Running   3          6d3h
 ----
 
-* Cost Reports
-
-.HCCM Reports created by HCCM installer
+. The OCP Usage uploader created some reports in the reporting operator that was installed. They're prefixed with HCCM.
++
 [source]
 ----
 $ oc get reports
 ----
 +
-.Example Output
+.Sample Output:
+[source,options="nowrap"]
 ----
 NAME                                            QUERY                                           SCHEDULE   RUNNING                  FAILED   LAST REPORT TIME       AGE
 hccm-openshift-persistentvolumeclaim            hccm-openshift-persistentvolumeclaim            hourly     ReportingPeriodWaiting            2019-09-09T21:00:00Z   6d3h
@@ -256,14 +402,14 @@ hccm-openshift-usage                            hccm-openshift-usage            
 hccm-openshift-usage-lookback                   hccm-openshift-usage-lookback                   hourly     ReportingPeriodWaiting            2019-09-09T21:00:00Z   6d3h
 ----
 
-* More things to try:
-
+. The metering operator has a lot of moving parts.  There are more things to try, if you like:
++
 .Hadoop Queries
 [source]
 ----
 $ oc get reportqueries.metering.openshift.io
 ----
-
++
 .Hadoop DataSources
 [source]
 ----
