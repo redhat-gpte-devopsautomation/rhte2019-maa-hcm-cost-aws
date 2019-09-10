@@ -6,7 +6,7 @@
 
 Welcome to the 2019 HCM Cost Management with OpenShift and AWS Lab
 
-Red Hat is in the midsts of developing SaaS offerings for our customer base. One of the first ones will be Cost Management.
+Red Hat is in the midst of developing SaaS offerings for our customer base all available at https://cloud.redhat.com and https://cloud.openshift.com. One of the early offerings will be Hybrid Cloud Cost Management. It is an Open Source project called "Koku" hosted at https://github.com/project-koku/ with documentation at https://koku.readthedocs.io/en/latest/
 
 Cost Management reveals the true costs of Business Initiatives.  It does so by appropriately tagging and labeling the resources used by an initiative and offering appropriate reporting on them. Most cloud platforms offer hourly reports on the costs of resources consumed, and when properly labeled and tagged, analysts can report on them.   Further features like forecasting, price-markups, etc. are forthcoming.
 
@@ -22,18 +22,37 @@ In this lab you will:
 
 * Walk through the setup of the Metering Operator on your own cluster
 * Add your cluster as a "source" for cost related information to the Account
-* Use labels and tags to associate OpenShift resources with AWS resource tags.
+* Use labels and tags to associate OpenShift resources with AWS resource tags
 * Analyse of the existing Account's current costs per Business Initiative
 * Forecast the cost of the Business's proposed Initiatives
 
 [WARNING]
-This product is in the ALPHA state.  Not all features are expected to work.  Your suggestions for improvements and features are welcome.
+Hybrid Cloud Cost Managment is in the ALPHA state.  Not all features are expected to work.  Your suggestions for improvements and features are welcome.
+
+
+[NOTE]
+####
+*OCP Usage Data Upload*
+
+Upon General Availability, HCCM will upload usage data via the separate project OpenShift Telemetry (https://docs.openshift.com/container-platform/4.1/telemetry/about-telemetry.html).  Until the products are integrated and are GA, a sub-project called "katakura" is supplied by the Cost Management team to upload data from OpenShift to the HCCM SaaS.
+####
+
 
 === Infrastructure
 
-* Your OCP4 Cluster - one small OCP4 cluster.
+* Your OCP4 Cluster - one small OCP4 cluster
+** Metering Operator already installed. Learn more at https://github.com/operator-framework/operator-metering
 * Your AWS Sandbox Account
-* The Cost Management BU's Account on https://cloud.openshift.com
+* Your Bastion Host
+** OCP 4 Installer
+** OCP `oc` client
+** Cost Collector (sub-project "katakura") already installed and configured
+* The Cost Management SaaS accounts served from https://cloud.redhat.com/hybrid/cost-management/
+** Red Hat Tech Exchange - Management Business Unit Account 1 - Number: 6289400 (rhte19mbu1org)
+***  Live data where you will add your clusters as a data source
+** Account 2 - Number: 6289402 (rhte19mbu2org)
+*** Static Sample data where you can see an example of Tags and Labels working together
+
 
 === Prerequisites
 
@@ -50,41 +69,57 @@ ssh lab-user@bastion.b1fa.sandbox23.opentlc.com
 +
 this means that your GUID is b1fa and your Sandbox Number is 23.
 
-== Red Hat Global Partner and Technical Enablement: ELTs and ILTs
+=== User Accounts
 
-GPTE is in the business of delivering training. GPTE delivers both online training (ELT) and in-person training (ILT).
-
-Let's create a system to track the cost of each student's resource usage in the cloud as they take classes.
-
-=== Cloud Resources: Shared Clusters and Dedicated Environments
-
-"Shared Clusters" are made up of resources shared with other students, on which they do their lab work. For example, students in a Shared Cluster are creating and deleting projects and associated OpenShift resources as part of their training.  Or perhaps, they might be sharing resources by pulling images from a common Quay registry.
-
-"Dedicated Environments" are created for the student, and only the individual student has access to the resources. Oftentimes, these students are confined to a linked or "sandbox" account where they can create new cloud resources in a controlled fashion.
-
-Classes can use Shared and/or Dedicated Resources to provide online environments to the students running labs as the lab creator sees fit. ELTs and ILTs can be taught by giving students access to a "Shared Cluster," or allowing the student to create new "Dedicated Environments".  Some use both "Shared Clusters" and "Dedicated Environments."
-
-=== Cloud Tags and OpenShift Labels
-
-.Default Values
-By default, the Red Hat Cost Management service can detect which AWS EC2 instance IDs are being used by an OpenShift cluster.  This gives the user coarse grained information regarding the Cloud Resource consumption of the cluster.  This would be appropriate for the OCP-related costs of a student with a Dedicated Environment.  However, this does not give us precise knowledge of the students' activities in a Shared Cluster.
-
-.Tags and Labels
-To give us precise information as to the students' activities, GPTE needs a tagging system to ensure that the class lab environment that was used by the student is properly accounted for in the Cost Management system. As many as possible of the resourced need to be tagged or labeled, according to the features of the infrastructure providing them.
-
-.Business Identifiers
-Let's say that a student with ID `student1-redhat.com` is taking the *OpenShift 4 Foundations* ELT.  We need to label and tag all the resources they will be using for the course of the class.  We should choose a meaningful identifier for the student taking the class.  Let's say `class_session: student1-redhat.com_ocp4-foundations`
-
-.Limitations
-Each infrastructure system has its own limitations in their tagging and labeling mechanisms.  The total number of tags or labels in a system may be limited.  The number of tags on a particular resource may be limited.  The character count and allowed characters may differ.  Care must be taken to create tags and labels that suit all the systems involved.
+* Bastion SSH:  `lab-user` `rhte2019`
+* OpenShift Web Console: `admin` `rhte2019`
 
 
 == Examine Cost Management on AWS
 
-* Observe the Setup of AWS 
-* Open AWS to find Tags Available
-* Open Cost Management to find Tags available
-*
+* Observe the Setup of AWS for Cost Management
+
+:imagesdir: images/
+
+. Turn on AWS Cost and Usage Reports
++
+image::01_aws_billing_console.png[]
++
+. There's already a Cost and Usage Report already setup for the *rhte19mbu1org*
++
+image::02_aws_cost_and_usage_reports.png[]
++
+. AWS is generating the reports and putting them in a bucket named *rhte19mbu1org*
++
+image::03_aws_report_details.png[]
++
+. AWS has already filled the bucket with some information for September 2019
++
+image::04_aws_populated_bucket.png[]
++
+. To protect the bucket and allow only the HCCM SaaS access to the bucket, a policy is created.
++
+image::05_aws_iam_policies.png[]
++
+. Red Hat HCCM accesses the bucket based on a strict access policy
++
+image::06_aws_policy_detail.png[]
++
+. An AWS Role is created to join the policy governing bucket access with the HCCM root account as a Trust Relationship.
++
+image::07_aws_role_with_policy.png[]
++
+. Finally, select AWS tags that will be used by AWS to report resource utilization.
++
+image::08_aws_cost_allocation_tags.png[]
++
+. Now, changing to the HCCM "Cost Management Sources" GUI in https://cloud.redhat.com/hybrid/cost-management/sources and an AWS source by indicating the bucket name and role created above.
++
+image::09_cost_aws_source_added.png[]
++
+. Within a few hours, the cloud tags should appear in the HCCM "Cloud Details" GUI.  You can then group your costs by these tags and begin getting insights into the cost of your business initiatives. link:https://cloud.redhat.com/hybrid/cost-management/aws?group_by[account]=*&order_by[cost]=desc
++
+image::10_cost_aws_cloud_tags_available.png[]
 
 
 == Examine Cost Management on OCP4
@@ -271,6 +306,35 @@ $ cat $HOME/.config/ocp_usage/*/config.json
 * Add the Cluster through the GUI
 
 * Wait a few hours
+
+== Red Hat Global Partner and Technical Enablement: ELTs and ILTs
+
+GPTE is in the business of delivering training. GPTE delivers both online training (ELT) and in-person training (ILT).
+
+Let's create a system to track the cost of each student's resource usage in the cloud as they take classes.
+
+=== Cloud Resources: Shared Clusters and Dedicated Environments
+
+"Shared Clusters" are made up of resources shared with other students, on which they do their lab work. For example, students in a Shared Cluster are creating and deleting projects and associated OpenShift resources as part of their training.  Or perhaps, they might be sharing resources by pulling images from a common Quay registry.
+
+"Dedicated Environments" are created for the student, and only the individual student has access to the resources. Oftentimes, these students are confined to a linked or "sandbox" account where they can create new cloud resources in a controlled fashion.
+
+Classes can use Shared and/or Dedicated Resources to provide online environments to the students running labs as the lab creator sees fit. ELTs and ILTs can be taught by giving students access to a "Shared Cluster," or allowing the student to create new "Dedicated Environments".  Some use both "Shared Clusters" and "Dedicated Environments."
+
+=== Cloud Tags and OpenShift Labels
+
+.Default Values
+By default, the Red Hat Cost Management service can detect which AWS EC2 instance IDs are being used by an OpenShift cluster.  This gives the user coarse grained information regarding the Cloud Resource consumption of the cluster.  This would be appropriate for the OCP-related costs of a student with a Dedicated Environment.  However, this does not give us precise knowledge of the students' activities in a Shared Cluster.
+
+.Tags and Labels
+To give us precise information as to the students' activities, GPTE needs a tagging system to ensure that the class lab environment that was used by the student is properly accounted for in the Cost Management system. As many as possible of the resourced need to be tagged or labeled, according to the features of the infrastructure providing them.
+
+.Business Identifiers
+Let's say that a student with ID `student1-redhat.com` is taking the *OpenShift 4 Foundations* ELT.  We need to label and tag all the resources they will be using for the course of the class.  We should choose a meaningful identifier for the student taking the class.  Let's say `class_session: student1-redhat.com_ocp4-foundations`
+
+.Limitations
+Each infrastructure system has its own limitations in their tagging and labeling mechanisms.  The total number of tags or labels in a system may be limited.  The number of tags on a particular resource may be limited.  The character count and allowed characters may differ.  Care must be taken to create tags and labels that suit all the systems involved.
+
 
 == Business Analysis Scenario
 
