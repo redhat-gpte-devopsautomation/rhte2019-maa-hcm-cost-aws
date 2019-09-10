@@ -12,13 +12,17 @@ Welcome to the 2019 HCM Cost Management with OpenShift and AWS Lab
 
 Red Hat is in the midst of developing SaaS offerings for our customer base all available at link:https://cloud.redhat.com[^] and link:https://cloud.openshift.com[^]. One of the early offerings will be Hybrid Cloud Cost Management. It is an Open Source project called "Koku" hosted at link:https://github.com/project-koku/[^] with documentation at link:https://koku.readthedocs.io/en/latest/[^]
 
-Cost Management reveals the true costs of Business Initiatives.  It does so by appropriately tagging and labeling the resources used by an initiative and offering appropriate reporting on them. Most cloud platforms offer hourly reports on the costs of resources consumed, and when properly labeled and tagged, analysts can report on them.   Further features like forecasting, price-markups, etc. are forthcoming.
+Cost Management reveals the true costs of Business Initiatives.  It does so by appropriately matching resources and their costs across varied platforms.  Resources are matched through common tagging and labeling of the resources used by an initiative and offering.  Once the matches are made, Cost Management appropriate reports on them. Most cloud platforms offer hourly reports on the costs of resources consumed, and when properly labeled and tagged, analysts can report on them. Further features like forecasting, price-markups, discounts (like AWS Reserve Instances) etc. are being developed now.
 
-To understand and sell this product, Red Hatters will need to learn the basic financial terminology and the problem domains that this product seeks to solve, including:
+To understand and sell this product, Red Hatters will not only need to learn the the techincal details of deploying and managing this product, but Red Hatters will also need to gain facility with basic financial terminology and the problem domains that this product seeks to solve, including:
 
 * Budgeting
 * Forecasting
 * Workload Optimization
+
+A blog post series is being planned, with explanations of the theory and examples of the product in use.
+
+Red Hat Global Partner and Technical Enablement (GPTE) will be producing on-line training, and itself will be a business use case for the product.  Learn more in upcoming blog posts.
 
 === Goals
 
@@ -26,18 +30,16 @@ In this lab you will:
 
 * Walk through the setup of the Metering Operator on your own cluster
 * Add your cluster as a "source" for cost related information to the Account
-* Use labels and tags to associate OpenShift resources with AWS resource tags
+* Use labels and tags to associate OpenShift resources with AWS resource tags according to Business Initiatives
 * Analyse of the existing Account's current costs per Business Initiative
 * Forecast the cost of the Business's proposed Initiatives
 
 [WARNING]
 Hybrid Cloud Cost Managment is in the *BETA* state.  Not all features are expected to work.  Your suggestions for improvements and features are welcome.
 
-
 [NOTE]
 *OCP Usage Data Upload*
 Upon General Availability, HCCM will upload usage data via the separate project OpenShift Telemetry (link:https://docs.openshift.com/container-platform/4.1/telemetry/about-telemetry.html[OpenShift Telemetry^]).  Until the products are integrated and are GA, a sub-project called "katakura" is supplied by the Cost Management team to upload data from OpenShift to the HCCM SaaS.
-
 
 === Infrastructure and Accounts
 
@@ -96,7 +98,7 @@ Here's how they're setup in AWS and the Red Hat HCCM SaaS:
 +
 
 +++ <details><summary> +++
-Click me!
+_Click for Sample Image_
 +++ </summary><div> +++
 image:01_aws_billing_console.png[]
 +++ </div></details> +++
@@ -105,6 +107,7 @@ image:01_aws_billing_console.png[]
 +
 
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:02_aws_cost_and_usage_reports.png[]
 +++ </div></details> +++
@@ -113,6 +116,7 @@ image:02_aws_cost_and_usage_reports.png[]
 +
 
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:03_aws_report_details.png[]
 +++ </div></details> +++
@@ -120,6 +124,7 @@ image:03_aws_report_details.png[]
 . AWS has already filled the bucket with some information for September 2019
 +
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:04_aws_populated_bucket.png[]
 +++ </div></details> +++
@@ -127,6 +132,7 @@ image:04_aws_populated_bucket.png[]
 . To protect the bucket and allow only the HCCM SaaS access to the bucket, a policy is created.
 +
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:05_aws_iam_policies.png[]
 +++ </div></details> +++
@@ -134,6 +140,7 @@ image:05_aws_iam_policies.png[]
 . Red Hat HCCM accesses the bucket based on a strict access policy
 +
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:06_aws_policy_detail.png[]
 +++ </div></details> +++
@@ -141,6 +148,7 @@ image:06_aws_policy_detail.png[]
 . An AWS Role is created to join the policy governing bucket access with the HCCM root account as a Trust Relationship.
 +
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:07_aws_role_with_policy.png[]
 +++ </div></details> +++
@@ -148,6 +156,7 @@ image:07_aws_role_with_policy.png[]
 . Finally, select AWS tags that will be used by AWS to report resource utilization.
 +
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:08_aws_cost_allocation_tags.png[]
 +++ </div></details> +++
@@ -155,6 +164,7 @@ image:08_aws_cost_allocation_tags.png[]
 . Now, changing to the HCCM "Cost Management Sources" GUI in  link:https://cloud.redhat.com/hybrid/cost-management/sources[^] and an AWS source by indicating the bucket name and role created above.
 +
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:09_cost_aws_source_added.png[]
 +++ </div></details> +++
@@ -162,6 +172,7 @@ image:09_cost_aws_source_added.png[]
 . Within a few hours, the cloud tags should appear in the HCCM "Cloud Details" GUI.  You can then group your costs by these tags and begin getting insights into the cost of your business initiatives. link:https://cloud.redhat.com/hybrid/cost-management/aws?group_by[account]=*&order_by[cost]=desc
 +
 +++ <details><summary> +++
+_Click for Sample Image_
 +++ </summary><div> +++
 image:10_cost_aws_cloud_tags_available.png[]
 +++ </div></details> +++
@@ -482,25 +493,46 @@ $ crontab -l
 . Sign in as username `rhte-example-1` password `r3dh4t1!`
 
 . Click *Add Source*
++++ <details><summary> +++
+_Sample Image_
++++ </summary><div> +++
+image:11_cost_add_source_button.png[]
++++ </div></details> +++
+. Fill out the *Add a source* form:
 .. *Name*: `ocp4-<your GUID>`.  For example `ocp4-3d0f`
 .. *Type*: Select "*Red Hat OpenShift Container Platform*"
 .. Click both the checkboxes.  They're already setup.
 * [*] On your OpenShift cluster, install:
 * [*] On a system with network access t your OpenShift cluster, install:
 .. Click *Next*
++++ <details><summary> +++
+_Sample Image_
++++ </summary><div> +++
+image:12_cost_ocp_source_details.png[]
++++ </div></details> +++
 
 . You already have the token. Click *Next*
 
 . Paste the *Cluster Identifier* you got in the last step.  It's also in the output of the crontab.
 .. Click *Next*
++++ <details><summary> +++
+_Sample Image_
++++ </summary><div> +++
+image:13_cost_ocp_cluster_id.png[]
++++ </div></details> +++
 
 . The crontab is already setup for you.  Click *Next*
 
 . Confirm the status details and click *Add Source*
 
 . You will eventually see your cluster in the list of link:https://cloud.redhat.com/hybrid/cost-management/[*Top Clusters*^] or click on *All Clusters* to find yours.
++++ <details><summary> +++
+_Sample Image_
++++ </summary><div> +++
+image:14_cost_clusters_list.png[]
++++ </div></details> +++
 
-* If data for your cluster hasn't already populated, wait a few hours for Korekuta and AWS to deliver reports and Koku to process them.  Report frequencies are by the hour.  Initial reports can take up to four hours to sync properly.
+NOTE: If data for your cluster hasn't already populated, wait a few hours for Korekuta and AWS to deliver reports and Koku to process them.  Report frequencies are by the hour.  Initial reports can take up to four hours to sync properly.
 
 == Business Use Cases and Cost Management
 
