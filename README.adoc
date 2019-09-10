@@ -416,15 +416,25 @@ $ oc get reportqueries.metering.openshift.io
 $ oc get reportdatasources.metering.openshift.io
 ----
 
-== Create your OCP Source in HCCM
+== Connect OCP and HCCM
 
-* Lookup your Cluster Identifier
+To upload data that the metering operator has collected into the Cost Management SaaS, we'll be using the Koku sub-project link:https://github.com/project-koku/korekuta[korekuta^].  Korekuta has several moving parts:
 
-The `ocp_usage.sh` script keeps its configuration data in the filesystem of the bastion host.  The directory names under `$HOME/.config/ocp_usage/` are the cluster identifiers.
+. Some custom reports for the reporting-operator in the metering-operator
+. Shell scripts to run the collector
+. Ansible playbooks to keep the shell scripts a sane length
+. Cronjobs to collect data periodically
+. A configuration of the `insights-client`.  It first sets up reports and then periodically reads the reports from the metering operator and uploads them to cloud.redhat.com with the `insights-client`.
 
+We've already set all this up for you on your environment. (You're welcome.) Let's have a look at its configuration.
+
+. The `ocp_usage.sh` script keeps its configuration data in the filesystem of the bastion host.  The directory names under `$HOME/.config/ocp_usage/` are the cluster identifiers.
++
 .Examine the Configs
 [source,bash]
 ----
+$ sudo -i
+$ su - ec2-user
 $ cat $HOME/.config/ocp_usage/*/config.json
 ----
 +
@@ -443,17 +453,58 @@ $ cat $HOME/.config/ocp_usage/*/config.json
 ----
 <1> The `ocp_usage.sh` collector will access the OpenShift cluster through the API endpoing.  Get it with `oc whoami --show-server`
 <2> The token that belongs to the service account that was created to display reports. Get it with `oc serviceaccounts get-token reporting-operator -n openshift-metering`
-<3> The cluster identifier used between the `ocp_usage.sh` scripts and the HCCM SaaS.
+<3> The cluster identifier used between the `ocp_usage.sh` scripts and the HCCM SaaS.  Also the name of the parent directory.
 <4> The Metering Operator namespace.
 <5> The `oc` command line tool appropriate for accessing this cluster.  Might need an `oc` client version 3 for older clusters.
 <6> Certs are optional, though encouraged.
 <7> The Route to the Reporting system to gather report to upload via `insights-client`.  Get it with `oc get route -n openshift-metering metering -o=jsonpath='{.status.ingress[0].host}'
 
+. The korekuta source code is in `/home/ec2-user/korekuta-master/`
+
+. There's a cronjob in the ec2-user's account:
++
+[source,sh,options="nowrap"]
+----
+$ crontab -l
+----
++
+.Sample Output:
+[source,sh,options="nowrap"]
+----
+#Ansible: korekuta
+*/45 * * * * /home/ec2-user/korekuta-master/ocp_usage.sh --collect --e OCP_CLUSTER_ID=c4d465d8-6fea-5183-b1c3-e144b92d592d
+----
+
 * Add the Cluster through the GUI
 
-* Wait a few hours
+. Navigate to link:https://cloud.redhat.com/hybrid/cost-management/sources[^]
 
-== Red Hat Global Partner and Technical Enablement: ELTs and ILTs
+. Sign in as username `rhte-example-1` password `r3dh4t1!`
+
+. Click *Add Source*
+.. *Name*: `ocp4-<your GUID>`.  For example `ocp4-3d0f`
+.. *Type*: Select "*Red Hat OpenShift Container Platform*"
+.. Click both the checkboxes.  They're already setup.
+* [*] On your OpenShift cluster, install:
+* [*] On a system with network access t your OpenShift cluster, install:
+.. Click *Next*
+
+. You already have the token. Click *Next*
+
+. Paste the *Cluster Identifier* you got in the last step.  It's also in the output of the crontab.
+.. Click *Next*
+
+. The crontab is already setup for you.  Click *Next*
+
+. Confirm the status details and click *Add Source*
+
+. You will eventually see your cluster in the list of link:https://cloud.redhat.com/hybrid/cost-management/[*Top Clusters*^] or click on *All Clusters* to find yours.
+
+* If data for your cluster hasn't already populated, wait a few hours for Korekuta and AWS to deliver reports and Koku to process them.  Report frequencies are by the hour.  Initial reports can take up to four hours to sync properly.
+
+== Business Use Cases and Cost Management
+
+=== Red Hat Global Partner and Technical Enablement: ELTs and ILTs
 
 GPTE is in the business of delivering training. GPTE delivers both online training (ELT) and in-person training (ILT).
 
