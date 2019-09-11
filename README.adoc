@@ -1,6 +1,6 @@
 :toc:
 
-= Red Hat Tech Exchange 2019
+= Red Hat Tech Exchange 2019 - A2003 Hybrid Cloud Management - Cost Management on AWS
 
 
 == A2003 Hybrid Cloud Management - Cost Management on AWS
@@ -453,7 +453,7 @@ $ cat $HOME/.config/ocp_usage/*/config.json
 [source,text]
 ----
 {
-    "ocp_api": "https://api.cluster-7371.7371.sandbox448.opentlc.com:6443", #<1>
+    "ocp_api": "https://api.cluster-7371.7371.sandbox448.opentlc.com:6443", <1>
     "ocp_token_file": "/home/ec2-user/7371.token", #<2>
     "ocp_cluster_id": "a1d4986f-eb03-57a9-bd1d-2ed6a9af4da0", #<3>
     "ocp_metering_namespace": "openshift-metering", #<4>
