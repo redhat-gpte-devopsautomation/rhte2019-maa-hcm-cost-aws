@@ -1,6 +1,6 @@
 :toc:
 
-= Red Hat Tech Exchange 2019
+= Red Hat Tech Exchange 2019 - A2003 Hybrid Cloud Management - Cost Management on AWS
 
 
 == A2003 Hybrid Cloud Management - Cost Management on AWS
@@ -10,7 +10,7 @@
 
 Welcome to the 2019 HCM Cost Management with OpenShift and AWS Lab
 
-Red Hat is in the midst of developing SaaS offerings for our customer base all available at link:https://cloud.redhat.com[^] and link:https://cloud.openshift.com[^]. One of the early offerings will be Hybrid Cloud Cost Management. It is an Open Source project called "Koku" hosted at link:https://github.com/project-koku/[^] with documentation at link:https://koku.readthedocs.io/en/latest/[^]
+Red Hat is in the midst of developing SaaS offerings for our customer base all available at link:https://cloud.redhat.com[^] and link:https://cloud.openshift.com[^]. One of the early offerings will be Hybrid Cloud Cost Management (HCCM.) It is an Open Source project called "Koku" hosted at link:https://github.com/project-koku/[^] with documentation at link:https://koku.readthedocs.io/en/latest/[^]
 
 Cost Management reveals the true costs of Business Initiatives.  It does so by appropriately matching resources and their costs across varied platforms.  Resources are matched through common tagging and labeling of the resources used by an initiative and offering.  Once the matches are made, Cost Management appropriate reports on them. Most cloud platforms offer hourly reports on the costs of resources consumed, and when properly labeled and tagged, analysts can report on them. Further features like forecasting, price-markups, discounts (like AWS Reserve Instances) etc. are being developed now.
 
@@ -453,7 +453,7 @@ $ cat $HOME/.config/ocp_usage/*/config.json
 [source,text]
 ----
 {
-    "ocp_api": "https://api.cluster-7371.7371.sandbox448.opentlc.com:6443", #<1>
+    "ocp_api": "https://api.cluster-7371.7371.sandbox448.opentlc.com:6443", <1>
     "ocp_token_file": "/home/ec2-user/7371.token", #<2>
     "ocp_cluster_id": "a1d4986f-eb03-57a9-bd1d-2ed6a9af4da0", #<3>
     "ocp_metering_namespace": "openshift-metering", #<4>
@@ -562,8 +562,7 @@ To give us precise information as to the students' activities, GPTE needs a tagg
 Let's say that a student with ID `student1-redhat.com` is taking the *OpenShift 4 Foundations* ELT.  We need to label and tag all the resources they will be using for the course of the class.  We should choose a meaningful identifier for the student taking the class.  Let's say `class_session: student1-redhat.com_ocp4-foundations`
 
 .Limitations
-Each infrastructure system has its own limitations in their tagging and labeling mechanisms.  The total number of tags or labels in a system may be limited.  The number of tags on a particular resource may be limited.  The character count and allowed characters may differ.  Care must be taken to create tags and labels that suit all the systems involved.
-
+Each system has its own limitations in their tagging and labeling mechanisms.  The total number of tags or labels in a system may be limited.  The number of tags on a particular resource may be limited.  The character count and allowed characters may differ.  Care must be taken to create tags and labels that suit all the systems involved.
 
 == Business Analysis Scenario
 
