@@ -11,7 +11,7 @@
   # iterate over all data to upload OCP clusters
 
 
-for x in output/ocp_sample_0{002..010}.yaml 
+for x in static-report-files/ocp_sample_0{270..285}.yaml 
 do
 	# echo $x
 	echo $x

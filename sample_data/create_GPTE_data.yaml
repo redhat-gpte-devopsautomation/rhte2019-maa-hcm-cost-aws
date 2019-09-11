@@ -58,15 +58,22 @@
   tasks:
     - name: ILTs AWS
       template:
-        src: ./aws_gpte_sample_ILT.j2
-        dest: ./output/aws_gpte_sample_ILT.yaml
+        src: ./templates/aws_gpte_sample_ILT.j2
+        dest: ./static-report-files/aws_gpte_sample_ILT.yaml
 
     - name: ILTs OCP
       template:
-        src: ./ocp_gpte_sample_ILT.j2
-        dest: ./output/ocp_gpte_sample_ILT.yaml
+        src: ./templates/ocp_gpte_sample_ILT.j2
+        dest: ./static-report-files/ocp_gpte_sample_ILT.yaml
 
-    - name: csplit ocpfiles
+    - name: csplit ocpfiles so they can be imported as separate clusters
       command: csplit -f "ocp_sample_" -n4 -b "%04d.yaml"  ocp_source_gpte_sample_ILT.yaml /---/ {*}
-        chdir: output/
+        chdir: static-report-files/
 
+    - name: generate data from aws static-report-files
+      debug:
+        msg: skipping generate data from aws static-report-files
+
+    - name: generate data from ocp static-report-files
+      debug:
+        msg: skipping generate data from ocp static-report-files

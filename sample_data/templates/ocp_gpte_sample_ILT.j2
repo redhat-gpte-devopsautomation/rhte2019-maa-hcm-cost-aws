@@ -1,0 +1,257 @@
+{% for i in ilts %}
+  {% set ilt_loop = loop %}
+  {# i.start_date, i.end_date, and i.class_session_id #}
+  {% for student in range(1, 20) %}
+    {% set class_session_id = i.class_session_id + "_student_" + student|string %}
+    {# resource_id:  date ilt# student# #}
+    {% set resource_id_base = i.start_date|replace("-","") + '%02d'|format(ilt_loop.index) + '%02d'|format(student) %}
+# example ILT
+# 4 EIPs
+# 1 client-vm
+# 3 masters
+#   1 EBS volume
+# 3 workers
+#   2 EBS volumes
+# 2 S3 buckets
+#
+# ILT {{ ilt_loop.index }}
+  # student {{ student }}
+#
+# OpenShift ILT resources
+#
+---
+generators:
+- OCPGenerator:
+    start_date: "{{ i.start_date }}"
+    end_date: "{{ i.end_date }}"
+
+#
+# ocp workers
+#
+
+    nodes:
+      - node:
+        node_name: "{{ resource_id_base }}_worker_1"
+        cpu_cores: 4
+        memory_gig: 16
+        resource_id: "{{ resource_id_base }}w1"
+        namespaces:
+          install-test:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name1_w1"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 3
+                mem_limit_gig: 8
+                pod_seconds: 3600
+                labels: label_environment:dev|label_app:catalog|label_version:prod
+            volumes:
+              - volume:
+                volume_name: "{{ resource_id_base }}_pvc-volume_1_w1"
+                storage_class: gp2
+                volume_request_gig: 20
+                labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:bravo
+                volume_claims:
+                  - volume_claim:
+                    volume_claim_name: "{{ resource_id_base }}_pod_name1_data"
+                    pod_name: "{{ resource_id_base }}_pod_name1_w1"
+                    labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:bravo
+                    capacity_gig: 20
+          catalog:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name2_w1"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 1
+                mem_limit_gig: 4
+                pod_seconds: 3600
+                labels: label_environment:dev|label_app:catalog|label_version:prod
+            volumes:
+              - volume:
+                volume_name: "{{ resource_id_base }}_pvc-volume_2_w1"
+                storage_class: gp2
+                volume_request_gig: 20
+                labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:delta
+                volume_claims:
+                  - volume_claim:
+                    volume_claim_name: "{{ resource_id_base }}_pod_name2_data_w1"
+                    pod_name: "{{ resource_id_base }}_pod_name2_w1"
+                    labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:delta
+                    capacity_gig: 20
+      - node:
+        node_name: "{{ resource_id_base }}_worker_2"
+        cpu_cores: 4
+        memory_gig: 16
+        resource_id: "{{ resource_id_base }}w2"
+        namespaces:
+          cost-management:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name3_w2"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 1
+                mem_limit_gig: 4
+                pod_seconds: 3600
+                labels: label_environment:qe|label_app:cost|label_version:beta
+            volumes:
+              - volume:
+                volume_name: "{{ resource_id_base }}_pvc-volume_3_w2"
+                storage_class: gp2
+                volume_request_gig: 20
+                labels: label_environment:qe|label_app:cost|label_version:beta|label_storageclass:epsilon
+                volume_claims:
+                  - volume_claim:
+                    volume_claim_name: "{{ resource_id_base }}_pod_name3_data_w2"
+                    pod_name: "{{ resource_id_base }}_pod_name3_w2"
+                    labels: label_environment:qe|label_app:cost|label_version:beta|label_storageclass:epsilon
+                    capacity_gig: 20
+      - node:
+        node_name: "{{ resource_id_base }}_worker_3"
+        cpu_cores: 4
+        memory_gig: 16
+        resource_id: "{{ resource_id_base }}w3"
+        namespaces:
+          analytics:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name4_w2"
+                cpu_request: 2
+                mem_request_gig: 4
+                cpu_limit: 2
+                mem_limit_gig: 4
+                pod_seconds: 3600
+                labels: label_environment:prod|label_app:analytics|label_version:gamma
+            volumes:
+              - volume:
+                volume_name: "{{ resource_id_base }}_pvc-volume_4_w2"
+                storage_class: gp2
+                volume_request_gig: 20
+                labels: label_environment:prod|label_app:analytics|label_version:gamma|label_storageclass:charlie
+                volume_claims:
+                  - volume_claim:
+                    volume_claim_name: "{{ resource_id_base }}_pod_name4_data_w2"
+                    pod_name: "{{ resource_id_base }}_pod_name4_w2"
+                    labels: label_environment:prod|label_app:analytics|label_version:gamma|label_storageclass:charlie
+                    capacity_gig: 20
+#
+# ocp masters
+#
+      - node:
+        node_name: "{{ resource_id_base }}_master_1"
+        cpu_cores: 8
+        memory_gig: 32
+        resource_id: "{{ resource_id_base }}m1"
+        namespaces:
+          kube-system:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name_kube_m1"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 1
+                mem_limit_gig: 4
+                pod_seconds: 3600
+                labels: label_environment:prod|label_app:master|label_version:master
+          openshift:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name_openshift_m1"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 1
+                mem_limit_gig: 4
+                pod_seconds: 3600
+            volumes:
+              - volume:
+                volume_name: "{{ resource_id_base }}_pvc-volume_openshift_m1"
+                storage_class: gp2
+                volume_request_gig: 20
+                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                volume_claims:
+                  - volume_claim:
+                    volume_claim_name: "{{ resource_id_base }}_pod_openshift_m1_data"
+                    pod_name: pod_name4
+                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                    capacity_gig: 20
+      - node:
+        node_name: "{{ resource_id_base }}_master_2"
+        cpu_cores: 8
+        memory_gig: 32
+        resource_id: "{{ resource_id_base }}m2"
+        namespaces:
+          kube-system:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name_kube_m2"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 1
+                mem_limit_gig: 4
+                pod_seconds: 3600
+                labels: label_environment:prod|label_app:master|label_version:master
+          openshift:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name_openshift_m2"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 1
+                mem_limit_gig: 4
+                pod_seconds: 3600
+                labels: label_environment:dev|label_app:master|label_version:master
+            volumes:
+              - volume:
+                volume_name: "{{ resource_id_base }}_pvc-volume_openshift_m2"
+                storage_class: gp2
+                volume_request_gig: 20
+                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                volume_claims:
+                  - volume_claim:
+                    volume_claim_name: "{{ resource_id_base }}_pod_openshift_m2_data"
+                    pod_name: pod_name4
+                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                    capacity_gig: 20
+      - node:
+        node_name: "{{ resource_id_base }}_master_3"
+        cpu_cores: 8
+        memory_gig: 32
+        resource_id: "{{ resource_id_base }}m3"
+        namespaces:
+          kube-system:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name_kube_m3"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 1
+                mem_limit_gig: 4
+                pod_seconds: 3600
+                labels: label_environment:prod|label_app:master|label_version:master
+          openshift:
+            pods:
+              - pod:
+                pod_name: "{{ resource_id_base }}_pod_name_openshift_m3"
+                cpu_request: 1
+                mem_request_gig: 2
+                cpu_limit: 1
+                mem_limit_gig: 4
+                pod_seconds: 3600
+                labels: label_environment:dev|label_app:master|label_version:master
+            volumes:
+              - volume:
+                volume_name: "{{ resource_id_base }}_pvc-volume_openshift_m3"
+                storage_class: gp2
+                volume_request_gig: 20
+                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                volume_claims:
+                  - volume_claim:
+                    volume_claim_name: "{{ resource_id_base }}_pod_openshift_m3_data"
+                    pod_name: pod_name4
+                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                    capacity_gig: 20
+
+{% endfor %}
+{% endfor %}
