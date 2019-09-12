@@ -67,7 +67,8 @@
         dest: ./static-report-files/ocp_gpte_sample_ILT.yaml
 
     - name: csplit ocpfiles so they can be imported as separate clusters
-      command: csplit -f "ocp_sample_" -n4 -b "%04d.yaml"  ocp_source_gpte_sample_ILT.yaml /---/ {*}
+      shell: 'csplit -f "ocp_sample_" -n4 -b "%04d.yaml"  ocp_gpte_sample_ILT.yaml /---/ {*}'
+      args:
         chdir: static-report-files/
 
     - name: generate data from aws static-report-files
