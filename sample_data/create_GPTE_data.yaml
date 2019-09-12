@@ -55,6 +55,22 @@
         end_date: 2019-08-30
         class_session_id: ocp4-deployment_teacher5
 
+      - start_date: 2019-09-02
+        end_date: 2019-09-06
+        class_session_id: ocp4-deployment_teacher1
+      - start_date: 2019-09-02
+        end_date: 2019-09-06
+        class_session_id: ocp4-deployment_teacher2
+      - start_date: 2019-09-09
+        end_date: 2019-09-13
+        class_session_id: ocp4-deployment_teacher3
+      - start_date: 2019-09-16
+        end_date: 2019-09-20
+        class_session_id: ocp4-deployment_teacher4
+      - start_date: 2019-09-23
+        end_date: 2019-09-27
+        class_session_id: ocp4-deployment_teacher5
+
   tasks:
     - name: ILTs AWS
       template:
