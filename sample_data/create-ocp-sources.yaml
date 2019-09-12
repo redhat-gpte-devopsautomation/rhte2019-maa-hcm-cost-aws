@@ -1,0 +1,31 @@
+---
+- name: create all ocp sources
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+   
+    - name: get all OCP sources
+      uri:
+        url: https://cloud.redhat.com/api/cost-management/v1/providers/?type=OCP&limit=1000
+        user: insights-upload-rhte19mbu2org
+        password: yaR3dBRKg2iPkPy 
+        force_basic_auth: true
+      register: r_all_OCP
+
+    - debug: msg="r_all_OCP {{ r_all_OCP.date }}"
+
+    - name: "Show UUIDs"
+      debug: 
+        var: item
+      loop: "{{  r_all_OCP|json_query('json.data[*].uuid') }}"
+
+
+    - name: "Delete OCP sources"
+      uri:
+        url: "https://cloud.redhat.com/api/cost-management/v1/providers/{{ item }}/"
+        method: DELETE
+        user: insights-upload-rhte19mbu2org
+        password: yaR3dBRKg2iPkPy 
+        force_basic_auth: true
+      loop: "{{  r_all_OCP|json_query('json.data[*].uuid') }}"
