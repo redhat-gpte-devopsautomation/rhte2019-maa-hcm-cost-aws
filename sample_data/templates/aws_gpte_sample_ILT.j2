@@ -26,29 +26,29 @@ generators:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       tags:
-        resourceTags/user:app: cost
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "cost"
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       # product_family: DNS Zone
       tags:
-        resourceTags/user:app: catalog
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "catalog"
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_family: DNS Query
       tags:
-        resourceTags/user:app: cost
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "cost"
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_family: DNS Query
       tags:
-        resourceTags/user:app: analytics
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "analytics"
   - S3Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -56,8 +56,8 @@ generators:
       amount: 500
       rate: 0.023
       tags:
-        resourceTags/user:storageclass: charlie
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "charlie"
 
   - EC2Generator:
       # client-vm
@@ -68,8 +68,8 @@ generators:
       product_sku: VEAJHRNKTJZQ
       region: us-east-1a
       tags:
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
         resourceTags/user:version: "prod"
-        resourceTags/user:class_session_id: {{ class_session_id }}
       instance_type:
         inst_type: t2.medium
         vcpu: 2
@@ -86,8 +86,8 @@ generators:
       amount: 120
       rate: 0.1
       tags:
-        resourceTags/user:storageclass: alpha
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "alpha_{{ class_session_id }}"
 
   - EC2Generator:
       # worker 1
@@ -98,9 +98,9 @@ generators:
       product_sku: VEAJHRNKTJAA
       region: us-east-1a
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:environment: dev
-        resourceTags/user:version: prod
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:environment: "dev_{{ class_session_id }}"
+        resourceTags/user:version: "prod"
       instance_type:
         inst_type: m5.xlarge
         vcpu: 4
@@ -116,8 +116,8 @@ generators:
       amount: 120
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: bravo
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "bravo"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -126,8 +126,8 @@ generators:
       amount: 10
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: bravo
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "bravo"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -136,8 +136,8 @@ generators:
       amount: 20
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: delta
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "delta_{{ class_session_id }}"
 
   - EC2Generator:
       # worker 2
@@ -148,9 +148,9 @@ generators:
       product_sku: VEAJHRNKTJAA
       region: us-east-1a
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:environment: qe
-        resourceTags/user:version: beta
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:environment: "qe_{{ class_session_id }}"
+        resourceTags/user:version: "beta_{{ class_session_id }}"
       instance_type:
         inst_type: m5.xlarge
         vcpu: 4
@@ -166,8 +166,8 @@ generators:
       amount: 120
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: epsilon
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "epsilon_{{ class_session_id }}"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -176,8 +176,8 @@ generators:
       amount: 20
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: epsilon
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "epsilon_{{ class_session_id }}"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -186,8 +186,8 @@ generators:
       amount: 10
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: epsilon
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "epsilon_{{ class_session_id }}"
 
   - EC2Generator:
       # worker 3
@@ -198,9 +198,9 @@ generators:
       product_sku: VEAJHRNKTJAA
       region: us-east-1a
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:environment: prod
-        resourceTags/user:version: gamma
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:environment: "prod"
+        resourceTags/user:version: "gamma"
       instance_type:
         inst_type: m5.xlarge
         vcpu: 4
@@ -216,8 +216,8 @@ generators:
       amount: 120
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: charlie
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "charlie"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -226,8 +226,8 @@ generators:
       amount: 20
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: charlie
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "charlie"
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -236,8 +236,8 @@ generators:
       amount: 10
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: charlie
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "charlie"
 
   - EC2Generator:
       # master 1
@@ -248,7 +248,7 @@ generators:
       product_sku: VEAJHRNKTJZQ
       region: us-east-1a
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
         resourceTags/user:version: "master"
       instance_type:
         inst_type: m5.2xlarge
@@ -266,9 +266,9 @@ generators:
       amount: 120
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: bravo
-        resourceTags/user:version: master
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "bravo"
+        resourceTags/user:version: "master"
 
   - EC2Generator:
       # master 2
@@ -279,7 +279,7 @@ generators:
       product_sku: VEAJHRNKTJZQ
       region: us-east-1a
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
         resourceTags/user:version: "master"
       instance_type:
         inst_type: m5.2xlarge
@@ -297,9 +297,9 @@ generators:
       amount: 120
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: bravo
-        resourceTags/user:version: master
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "bravo"
+        resourceTags/user:version: "master"
 
   - EC2Generator:
       # master 3
@@ -310,7 +310,7 @@ generators:
       product_sku: VEAJHRNKTJZQ
       region: us-east-1a
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
         resourceTags/user:version: "master"
       instance_type:
         inst_type: m5.2xlarge
@@ -328,9 +328,9 @@ generators:
       amount: 120
       rate: 0.1
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:storageclass: bravo
-        resourceTags/user:version: master
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:storageclass: "bravo"
+        resourceTags/user:version: "master"
 
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
@@ -338,47 +338,47 @@ generators:
       product_sku: VEAJHRNKTJZQ
       resource_id: "{{ resource_id_base }}dtg01a"
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:app: analytics
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "analytics"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_sku: VEAJHRNKTJAA
       resource_id: "{{ resource_id_base }}dtg02a"
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:app: cost
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "cost"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_sku: VEAJHRNAAAAA
       resource_id: "{{ resource_id_base }}dtg05d"
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:app: cost
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "cost"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       resource_id: "{{ resource_id_base }}dtg03b"
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:app: catalog
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "catalog"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_sku: VEAJHRNKTJAC
       resource_id: "{{ resource_id_base }}dtg04c"
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:app: catalog
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "catalog"
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_sku: VEAJHRNKTJAC
       resource_id: "{{ resource_id_base }}dtg04c"
       tags:
-        resourceTags/user:class_session_id: {{ class_session_id }}
-        resourceTags/user:app: master
+        resourceTags/user:openshift_cluster: "ocp_{{ class_session_id }}"
+        resourceTags/user:app: "master"
 #
 # end AWS template
 #

@@ -1,9 +1,9 @@
 for x in static-report-files/ocp_sample_*.yaml 
 do
 	# provider_resource_name
-	cluster_id=$(sed -ne 's/^.*node_name: "\(............\)_.*/\1/p' $x | head -1)
-	provider_resource_name="ocp_${cluster_id}"
+	provider_resource_name=$(sed -ne 's/^.*openshift_cluster: "\(.*\)"/\1/p' $x | head -1)
 	provider_name=$(basename $x .yaml)
+	
 
 	# create OCP provider
 	JSON_STRING=$( jq -n \
@@ -13,6 +13,7 @@ do
 
 	echo "### Creating OCP provider from file $x"
 	echo "curl --user insights-upload-rhte19mbu2org:REDACTED -d ${JSON_STRING}  -H 'Content-Type: application/json' https://cloud.redhat.com/api/cost-management/v1/providers/"
+        exit 1
 	UUID=$(curl -s -H 'Content-Type: application/json' --user insights-upload-rhte19mbu2org:yaR3dBRKg2iPkPy -d "${JSON_STRING}"  https://cloud.redhat.com/api/cost-management/v1/providers/ | jq -r '.uuid' )
 	echo "UUID is $UUID of provider_resource_name ${provider_resource_name} and provider_name ${provider_name}"
 
