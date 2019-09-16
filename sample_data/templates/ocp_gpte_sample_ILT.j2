@@ -1,8 +1,8 @@
 {% for i in ilts %}
   {% set ilt_loop = loop %}
   {# i.start_date, i.end_date, and i.class_session_id #}
-  {% for student in range(1, 20) %}
-    {% set class_session_id = i.class_session_id + "_student_" + student|string %}
+  {% for student in range(1, 3) %}
+    {% set class_session_id = "ilt" + '%02d'|format(ilt_loop.index) + "student" +'%02d'|format(student) %}
     {# resource_id:  date ilt# student# #}
     {% set resource_id_base = i.start_date|replace("-","") + '%02d'|format(ilt_loop.index) + '%02d'|format(student) %}
 # example ILT
@@ -45,18 +45,18 @@ generators:
                 cpu_limit: 3
                 mem_limit_gig: 8
                 pod_seconds: 3600
-                labels: label_environment:dev|label_app:catalog|label_version:prod
+                labels: label_environment:dev|label_app:catalog|label_version:prod|label_class_session_id:{{ class_session_id }}
             volumes:
               - volume:
                 volume_name: "{{ resource_id_base }}_pvc-volume_1_w1"
                 storage_class: gp2
                 volume_request_gig: 20
-                labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:bravo
+                labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:bravo|label_class_session_id:{{ class_session_id }}
                 volume_claims:
                   - volume_claim:
                     volume_claim_name: "{{ resource_id_base }}_pod_name1_data"
                     pod_name: "{{ resource_id_base }}_pod_name1_w1"
-                    labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:bravo
+                    labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:bravo|label_class_session_id:{{ class_session_id }}
                     capacity_gig: 20
           catalog:
             pods:
@@ -67,18 +67,18 @@ generators:
                 cpu_limit: 1
                 mem_limit_gig: 4
                 pod_seconds: 3600
-                labels: label_environment:dev|label_app:catalog|label_version:prod
+                labels: label_environment:dev|label_app:catalog|label_version:prod|label_class_session_id:{{ class_session_id }}
             volumes:
               - volume:
                 volume_name: "{{ resource_id_base }}_pvc-volume_2_w1"
                 storage_class: gp2
                 volume_request_gig: 20
-                labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:delta
+                labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:delta|label_class_session_id:{{ class_session_id }}
                 volume_claims:
                   - volume_claim:
                     volume_claim_name: "{{ resource_id_base }}_pod_name2_data_w1"
                     pod_name: "{{ resource_id_base }}_pod_name2_w1"
-                    labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:delta
+                    labels: label_environment:dev|label_app:catalog|label_version:prod|label_storageclass:delta|label_class_session_id:{{ class_session_id }}
                     capacity_gig: 20
       - node:
         node_name: "{{ resource_id_base }}_worker_2"
@@ -95,18 +95,18 @@ generators:
                 cpu_limit: 1
                 mem_limit_gig: 4
                 pod_seconds: 3600
-                labels: label_environment:qe|label_app:cost|label_version:beta
+                labels: label_environment:qe|label_app:cost|label_version:beta|label_class_session_id:{{ class_session_id }}
             volumes:
               - volume:
                 volume_name: "{{ resource_id_base }}_pvc-volume_3_w2"
                 storage_class: gp2
                 volume_request_gig: 20
-                labels: label_environment:qe|label_app:cost|label_version:beta|label_storageclass:epsilon
+                labels: label_environment:qe|label_app:cost|label_version:beta|label_storageclass:epsilon|label_class_session_id:{{ class_session_id }}
                 volume_claims:
                   - volume_claim:
                     volume_claim_name: "{{ resource_id_base }}_pod_name3_data_w2"
                     pod_name: "{{ resource_id_base }}_pod_name3_w2"
-                    labels: label_environment:qe|label_app:cost|label_version:beta|label_storageclass:epsilon
+                    labels: label_environment:qe|label_app:cost|label_version:beta|label_storageclass:epsilon|label_class_session_id:{{ class_session_id }}
                     capacity_gig: 20
       - node:
         node_name: "{{ resource_id_base }}_worker_3"
@@ -123,18 +123,18 @@ generators:
                 cpu_limit: 2
                 mem_limit_gig: 4
                 pod_seconds: 3600
-                labels: label_environment:prod|label_app:analytics|label_version:gamma
+                labels: label_environment:prod|label_app:analytics|label_version:gamma|label_class_session_id:{{ class_session_id }}
             volumes:
               - volume:
                 volume_name: "{{ resource_id_base }}_pvc-volume_4_w2"
                 storage_class: gp2
                 volume_request_gig: 20
-                labels: label_environment:prod|label_app:analytics|label_version:gamma|label_storageclass:charlie
+                labels: label_environment:prod|label_app:analytics|label_version:gamma|label_storageclass:charlie|label_class_session_id:{{ class_session_id }}
                 volume_claims:
                   - volume_claim:
                     volume_claim_name: "{{ resource_id_base }}_pod_name4_data_w2"
                     pod_name: "{{ resource_id_base }}_pod_name4_w2"
-                    labels: label_environment:prod|label_app:analytics|label_version:gamma|label_storageclass:charlie
+                    labels: label_environment:prod|label_app:analytics|label_version:gamma|label_storageclass:charlie|label_class_session_id:{{ class_session_id }}
                     capacity_gig: 20
 #
 # ocp masters
@@ -154,7 +154,7 @@ generators:
                 cpu_limit: 1
                 mem_limit_gig: 4
                 pod_seconds: 3600
-                labels: label_environment:prod|label_app:master|label_version:master
+                labels: label_environment:prod|label_app:master|label_version:master|label_class_session_id:{{ class_session_id }}
           openshift:
             pods:
               - pod:
@@ -169,12 +169,12 @@ generators:
                 volume_name: "{{ resource_id_base }}_pvc-volume_openshift_m1"
                 storage_class: gp2
                 volume_request_gig: 20
-                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo|label_class_session_id:{{ class_session_id }}
                 volume_claims:
                   - volume_claim:
                     volume_claim_name: "{{ resource_id_base }}_pod_openshift_m1_data"
                     pod_name: pod_name4
-                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo|label_class_session_id:{{ class_session_id }}
                     capacity_gig: 20
       - node:
         node_name: "{{ resource_id_base }}_master_2"
@@ -191,7 +191,7 @@ generators:
                 cpu_limit: 1
                 mem_limit_gig: 4
                 pod_seconds: 3600
-                labels: label_environment:prod|label_app:master|label_version:master
+                labels: label_environment:prod|label_app:master|label_version:master|label_class_session_id:{{ class_session_id }}
           openshift:
             pods:
               - pod:
@@ -201,18 +201,18 @@ generators:
                 cpu_limit: 1
                 mem_limit_gig: 4
                 pod_seconds: 3600
-                labels: label_environment:dev|label_app:master|label_version:master
+                labels: label_environment:dev|label_app:master|label_version:master|label_class_session_id:{{ class_session_id }}
             volumes:
               - volume:
                 volume_name: "{{ resource_id_base }}_pvc-volume_openshift_m2"
                 storage_class: gp2
                 volume_request_gig: 20
-                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo|label_class_session_id:{{ class_session_id }}
                 volume_claims:
                   - volume_claim:
                     volume_claim_name: "{{ resource_id_base }}_pod_openshift_m2_data"
                     pod_name: pod_name4
-                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo|label_class_session_id:{{ class_session_id }}
                     capacity_gig: 20
       - node:
         node_name: "{{ resource_id_base }}_master_3"
@@ -229,7 +229,7 @@ generators:
                 cpu_limit: 1
                 mem_limit_gig: 4
                 pod_seconds: 3600
-                labels: label_environment:prod|label_app:master|label_version:master
+                labels: label_environment:prod|label_app:master|label_version:master|label_class_session_id:{{ class_session_id }}
           openshift:
             pods:
               - pod:
@@ -239,18 +239,18 @@ generators:
                 cpu_limit: 1
                 mem_limit_gig: 4
                 pod_seconds: 3600
-                labels: label_environment:dev|label_app:master|label_version:master
+                labels: label_environment:dev|label_app:master|label_version:master|label_class_session_id:{{ class_session_id }}
             volumes:
               - volume:
                 volume_name: "{{ resource_id_base }}_pvc-volume_openshift_m3"
                 storage_class: gp2
                 volume_request_gig: 20
-                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo|label_class_session_id:{{ class_session_id }}
                 volume_claims:
                   - volume_claim:
                     volume_claim_name: "{{ resource_id_base }}_pod_openshift_m3_data"
                     pod_name: pod_name4
-                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo
+                    labels: label_environment:prod|label_app:master|label_version:master|label_storageclass:bravo|label_class_session_id:{{ class_session_id }}
                     capacity_gig: 20
 
 {% endfor %}

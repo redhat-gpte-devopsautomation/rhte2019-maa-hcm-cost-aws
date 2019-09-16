@@ -1,4 +1,6 @@
-#  nise --aws --static-report-file .//aws_gpte_sample_ILT.yaml
+#  nise --aws --static-report-file static-report-files/aws_gpte_sample_ILT.yaml --aws --aws-s3-bucket-name $HOME/aws/
+
+
 #  nise --ocp --ocp-cluster-id gpte-sample-cluster --static-report-file ocp_gpte_sample_ILT.yaml
 #  
 #  nise --aws --static-report-file .//aws_gpte_sample_ILT.yaml --aws-s3-bucket-name cost-test-bucket  --aws-s3-report-name cur
@@ -11,7 +13,7 @@
   # iterate over all data to upload OCP clusters
 
 
-for x in static-report-files/ocp_sample_0{270..285}.yaml 
+for x in static-report-files/ocp_sample_0{286..380}.yaml 
 do
 	# provider_resource_name
 	cluster_id=$(sed -ne 's/^.*node_name: "\(............\)_.*/\1/p' $x | head -1)
@@ -34,8 +36,8 @@ do
 	# upload data through insights
 
 	#echo "Upload $x to $ocp_cluster_id"
-	echo "INSIGHTS_USER=insights-upload-rhte19mbu2org INSIGHTS_PASSWORD=REDACTED  nise --ocp --ocp-cluster-id ${UUID}  --static-report-file $x --insights-upload https://cloud.redhat.com/api/ingress/v1/upload"
-	INSIGHTS_USER=insights-upload-rhte19mbu2org INSIGHTS_PASSWORD=yaR3dBRKg2iPkPy nise --ocp --ocp-cluster-id ${UUID}  --static-report-file $x --insights-upload https://cloud.redhat.com/api/ingress/v1/upload
+	echo "INSIGHTS_USER=insights-upload-rhte19mbu2org INSIGHTS_PASSWORD=REDACTED  nise --ocp --ocp-cluster-id ${provider_resource_name}  --static-report-file $x --insights-upload https://cloud.redhat.com/api/ingress/v1/upload"
+	INSIGHTS_USER=insights-upload-rhte19mbu2org INSIGHTS_PASSWORD=yaR3dBRKg2iPkPy nise --ocp --ocp-cluster-id ${provider_resource_name}  --static-report-file $x --insights-upload https://cloud.redhat.com/api/ingress/v1/upload
 	echo
 
 

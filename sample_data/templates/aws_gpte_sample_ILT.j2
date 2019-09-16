@@ -3,8 +3,8 @@ generators:
 {% for i in ilts %}
   {% set ilt_loop = loop %}
   {# i.start_date, i.end_date, and i.class_session_id #}
-  {% for student in range(1, 20) %}
-    {% set class_session_id = i.class_session_id + "_student_" + student|string %}
+  {% for student in range(1, 3) %}
+    {% set class_session_id = "ilt" + '%02d'|format(ilt_loop.index) + "student" +'%02d'|format(student) %}
     {# resource_id:  date ilt# student# #}
     {% set resource_id_base = i.start_date|replace("-","") + '%02d'|format(ilt_loop.index) + '%02d'|format(student) %}
 # example ILT
@@ -27,24 +27,28 @@ generators:
       end_date: "{{ i.end_date }}"
       tags:
         resourceTags/user:app: cost
+        resourceTags/user:class_session_id: {{ class_session_id }}
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       # product_family: DNS Zone
       tags:
         resourceTags/user:app: catalog
+        resourceTags/user:class_session_id: {{ class_session_id }}
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_family: DNS Query
       tags:
         resourceTags/user:app: cost
+        resourceTags/user:class_session_id: {{ class_session_id }}
   - Route53Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       product_family: DNS Query
       tags:
         resourceTags/user:app: analytics
+        resourceTags/user:class_session_id: {{ class_session_id }}
   - S3Generator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
@@ -53,6 +57,7 @@ generators:
       rate: 0.023
       tags:
         resourceTags/user:storageclass: charlie
+        resourceTags/user:class_session_id: {{ class_session_id }}
 
   - EC2Generator:
       # client-vm
@@ -64,6 +69,7 @@ generators:
       region: us-east-1a
       tags:
         resourceTags/user:version: "prod"
+        resourceTags/user:class_session_id: {{ class_session_id }}
       instance_type:
         inst_type: t2.medium
         vcpu: 2
@@ -81,6 +87,7 @@ generators:
       rate: 0.1
       tags:
         resourceTags/user:storageclass: alpha
+        resourceTags/user:class_session_id: {{ class_session_id }}
 
   - EC2Generator:
       # worker 1
@@ -91,6 +98,7 @@ generators:
       product_sku: VEAJHRNKTJAA
       region: us-east-1a
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:environment: dev
         resourceTags/user:version: prod
       instance_type:
@@ -108,6 +116,7 @@ generators:
       amount: 120
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: bravo
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
@@ -117,6 +126,7 @@ generators:
       amount: 10
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: bravo
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
@@ -126,6 +136,7 @@ generators:
       amount: 20
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: delta
 
   - EC2Generator:
@@ -137,6 +148,7 @@ generators:
       product_sku: VEAJHRNKTJAA
       region: us-east-1a
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:environment: qe
         resourceTags/user:version: beta
       instance_type:
@@ -154,6 +166,7 @@ generators:
       amount: 120
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: epsilon
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
@@ -163,6 +176,7 @@ generators:
       amount: 20
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: epsilon
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
@@ -172,6 +186,7 @@ generators:
       amount: 10
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: epsilon
 
   - EC2Generator:
@@ -183,6 +198,7 @@ generators:
       product_sku: VEAJHRNKTJAA
       region: us-east-1a
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:environment: prod
         resourceTags/user:version: gamma
       instance_type:
@@ -200,6 +216,7 @@ generators:
       amount: 120
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: charlie
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
@@ -209,6 +226,7 @@ generators:
       amount: 20
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: charlie
   - EBSGenerator:
       start_date: "{{ i.start_date }}"
@@ -218,6 +236,7 @@ generators:
       amount: 10
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: charlie
 
   - EC2Generator:
@@ -229,6 +248,7 @@ generators:
       product_sku: VEAJHRNKTJZQ
       region: us-east-1a
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:version: "master"
       instance_type:
         inst_type: m5.2xlarge
@@ -246,6 +266,7 @@ generators:
       amount: 120
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: bravo
         resourceTags/user:version: master
 
@@ -258,6 +279,7 @@ generators:
       product_sku: VEAJHRNKTJZQ
       region: us-east-1a
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:version: "master"
       instance_type:
         inst_type: m5.2xlarge
@@ -275,6 +297,7 @@ generators:
       amount: 120
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: bravo
         resourceTags/user:version: master
 
@@ -287,6 +310,7 @@ generators:
       product_sku: VEAJHRNKTJZQ
       region: us-east-1a
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:version: "master"
       instance_type:
         inst_type: m5.2xlarge
@@ -304,6 +328,7 @@ generators:
       amount: 120
       rate: 0.1
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:storageclass: bravo
         resourceTags/user:version: master
 
@@ -313,6 +338,7 @@ generators:
       product_sku: VEAJHRNKTJZQ
       resource_id: "{{ resource_id_base }}dtg01a"
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:app: analytics
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
@@ -320,6 +346,7 @@ generators:
       product_sku: VEAJHRNKTJAA
       resource_id: "{{ resource_id_base }}dtg02a"
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:app: cost
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
@@ -327,12 +354,14 @@ generators:
       product_sku: VEAJHRNAAAAA
       resource_id: "{{ resource_id_base }}dtg05d"
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:app: cost
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
       end_date: "{{ i.end_date }}"
       resource_id: "{{ resource_id_base }}dtg03b"
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:app: catalog
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
@@ -340,6 +369,7 @@ generators:
       product_sku: VEAJHRNKTJAC
       resource_id: "{{ resource_id_base }}dtg04c"
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:app: catalog
   - DataTransferGenerator:
       start_date: "{{ i.start_date }}"
@@ -347,6 +377,7 @@ generators:
       product_sku: VEAJHRNKTJAC
       resource_id: "{{ resource_id_base }}dtg04c"
       tags:
+        resourceTags/user:class_session_id: {{ class_session_id }}
         resourceTags/user:app: master
 #
 # end AWS template
