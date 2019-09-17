@@ -540,9 +540,12 @@ NOTE: If data for your cluster hasn't already populated, wait a few hours for Ko
 
 GPTE is in the business of delivering training. GPTE delivers both online training (ELT) and in-person training (ILT).
 
+
 Let's create a system to track the cost of each student's resource usage in the cloud as they take classes.
 
 === Cloud Resources: Shared Clusters and Dedicated Environments
+
+When students take classes they use online lab environments to do the exercises taught in their classes.  The labs environemnts are hosted in the cloud.  The lab environments for each student can be provided by "Dedicated Environments" or "Shared Clusters," and sometimes both.
 
 "Shared Clusters" are made up of resources shared with other students, on which they do their lab work. For example, students in a Shared Cluster are creating and deleting projects and associated OpenShift resources as part of their training.  Or perhaps, they might be sharing resources by pulling images from a common Quay registry.
 
@@ -564,15 +567,77 @@ Let's say that a student with ID `student1-redhat.com` is taking the *OpenShift 
 .Limitations
 Each system has its own limitations in their tagging and labeling mechanisms.  The total number of tags or labels in a system may be limited.  The number of tags on a particular resource may be limited.  The character count and allowed characters may differ.  Care must be taken to create tags and labels that suit all the systems involved.
 
+
+== Example Account - Data
+
+=== Sample Account
+
+Our sample account, which you have access to, can show you how OpenShift projects/namespaces are associated with AWS resources.
+
+Using OpenShift labels and AWS tags you are expressing the relationship between student ILT clusters, the applications they're hosting, and the AWS resources that power them.
+
+=== Sample Cluster
+
+We have created same data for eight ILTs, each of which have two students who have deployed their own single OCP clusters. 
+
+Each cluster has three masters, three worker nodes, and associated storage with tags called storageclass whicn represents EBS volumes and S3 storage.
+
+Three "workload" projects were deployed on the clusters.  They are the basis of a sample "cost management" system and the OCP control plane:  The apps are install-test, cost-management, catalog, analytics.  The control plane is also represented by projects openshift, and kube-system.
+
+[NOTE] You won't be looking at Cost Management data as instances of AWS resources - rather, you'll be presented with the cost derived from the tag and label associations that connect the OCP resources to underlying AWS resources.
+
+
+=== Examine the data of the ILT clusters through the GUI:
+
+* Log into the Sample Data Account
+
+. Navigate to link:https://cloud.redhat.com/hybrid/cost-management/sources/[^]
+
+. Log OUT of the previous user.
+
+. Sign in as example user *2*: username `rhte-example-2` password `r3dh4t1!`
+
+* All of the cluster data has already been loaded
+
+* *Click* on *Cost Management* on the left to open up the five options and *Click* on *Overview.*  The Cost Management Overview page opens.
+
+* Look at the "Infrastructure cost" graph, and note that it only covers this month and the last.  HCM Cost Management is currently designed for quick analysis of recent changes in spending.
+
+* Using your mouse, determine which week-long time periods ILTs were run.  Note that sometimes the graph lines are unbroken. 
+
+* Note which particular projects have cost the most money this month.
+
+* *Click* on the *Top Clusters* tab and see the top spenders for the month.
+
+* *Scroll Down* and observe the AWS resource utilization and the actual resource usage of all OCP projects compared to the resources requested by all OCP projects.
+
+* On the left, click on *OpenShift on cloud details* and in the list of projects that opens, click the to open the first project name (usually "analytics") on the list.  Note how it identifies a single cluster and the spending per region of the projects.
+
+* Continue working with the Cost Management GUI to try to answer the following questions:
+
+
 == Business Analysis Scenario
 
-GPTE Senior Management wants to know:
+NOTE: Note that this data is in some parts matched incorrecgly and faulty just for today, Tuesday's breakout, and can produce strange results. 
 
-* How much have we spent, month by month, with AWS
+Senior Management wants to know:
+
+* How much have we spent in the last month with AWS
 * Infrastructure Cost per student to Run one OpenShift 4 ILT
-* Infrastructure Cost per student to Run one OpenShift 4 "Foundations" ELT
-* How many Students have done the OpenShift 4 "Foundations" ELT the past three months
-* At current rate of usage increase, how much will we be spending on OpenShift 4 "Foundations" ELTs
+* How many Students have done the OpenShift 4 "Foundations" ELT the past two months
+* At current rate of usage increase, how much will we be spending on OpenShift 4 ELTs
 
+== Congratulations!
 
+This breakout has shown you the basics of the Cost Management system.  It covered the infrastructure setup and basic use of the product.
 
+Don't forget to register your attendance in the app!!
+
+[CAUTION] 
+*Come to the Hack-a-thon on Thursday!*  If you are interested in the sample data cleaned up and want to work with it, we'll be featuring it there.  
+
+WARNING:  Also!  *Do you want to Keep your cluster alive until Thursday?*  If you want to continue working withy your live cluster after this Breakout, see Judd and tell him your GUID.  He'll make sure your cluster is not retired, and you can use it until after the Hack-a-thon on Thursday.
+
+NOTE: Remember, you can learn a lot more about Cost Management in the docs and blog posts indicated at the top of this document.
+
+*_Have a Great Tech Exchange!_* -The HCM Cost Management Team and GPTE
