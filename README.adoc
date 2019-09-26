@@ -1,3 +1,4 @@
+:imagesdir: images/
 :toc:
 
 = Red Hat Tech Exchange 2019 - A2003 Hybrid Cloud Management - Cost Management on AWS
@@ -28,6 +29,7 @@ Red Hat Global Partner and Technical Enablement (GPTE) will be producing on-line
 
 In this lab you will:
 
+* Walk through the setup of the AWS Cost Usage And Reporting into a S3 bucket
 * Walk through the setup of the Metering Operator on your own cluster
 * Add your cluster as a "source" for cost related information to the Account
 * Use labels and tags to associate OpenShift resources with AWS resource tags according to Business Initiatives
@@ -45,13 +47,12 @@ Upon General Availability, HCCM will upload usage data via the separate project 
 
 * Your OCP4 Cluster - one small OCP4 cluster
 ** 1 Master, 3 workers, 1 bastion
-** OpenShift Web Console: `admin` `rhte2019`
 ** Metering Operator already installed. Learn more at link:https://github.com/operator-framework/operator-metering[^]
 
 * Your Bastion Host
-** Bastion SSH: `lab-user` `rhte2019`
+** Bastion SSH: user:`lab-user` password: `rhte2019`
 ** OCP 4 Installer - already complete
-** OCP `oc` client - `system:admin` keys setup
+** OCP `oc` client - `system:admin` keys already set up
 ** Cost Collector (sub-project "katakura") already installed and configured
 
 * Your AWS Sandbox Account
@@ -61,9 +62,9 @@ Upon General Availability, HCCM will upload usage data via the separate project 
 *** aws secret access key
 
 * The Cost Management SaaS accounts
-** Red Hat Tech Exchange - Management Business Unit Account 1 - Number: 6289400 (rhte19mbu1org)
+** Account 1 - Number: 6289400 (rhte19mbu1org)
 *** Live data where you will add your clusters as a data source
-** Account 2 - Number: 6289402 (rhte19mbu2org)
+** Account 2 - Number: 6289401 (rhte19mbu2org)
 *** Static Sample data where you can see an example of Tags and Labels working together
 
 === Prerequisites
@@ -76,7 +77,7 @@ Upon General Availability, HCCM will upload usage data via the separate project 
 +
 [source,sh]
 ----
-ssh lab-user@bastion.b1fa.sandbox23.opentlc.com
+ssh lab-user@bastion.GUID.sandboxNN.opentlc.com
 ----
 +
 this means that your GUID is b1fa and your Sandbox Number is 23.
@@ -88,14 +89,10 @@ You are not actually doing this part of the lab.  This is for your reference so 
 
 Your cloud provider is the first stop in gathering cost information.  The Cost Management will support both AWS and Azure, with more platforms coming.  We'll focus on AWS.
 
-AWS reports costs for consumption by third parties via a feature called "AWS Cost and Usage Reports."  The AWS root account can setup these reports, including the level of data detail and the AWS tags that are included. AWS generates CSV files and places them in special S3 buckets almost hourly.  Red Hat Cost Managemetn gathers these logs from the S3 bucket almost hourly and processes them.  Since you only have an AWS "linked" account, not a root account, you will not be able to alter the configuration of AWS cost reporting.  Sorry about that.  We'll do our best to show them to you.
 
-Here's how they're setup in AWS and the Red Hat HCCM SaaS:
+=== Observe the Setup of AWS for Cost Management
 
-* Observe the Setup of AWS for Cost Management
-
-:imagesdir: images/
-
+NOTE: Since your sandbox linked account does not have access to the AWS web console, we've made screenshots to walk you through the process.
 
 . Turn on AWS Cost and Usage Reports
 +
@@ -180,12 +177,12 @@ _Click for Sample Image_
 image:10_cost_aws_cloud_tags_available.png[]
 +++ </div></details> +++
 
-== Examine Cost Management on OCP4
+== Cost Management setup on OCP4
 
 [CAUTION]
 Yes, actually do this part of the lab
 
-* Examine how Cost Management is Deployed on OCP4
+=== Examine how Cost Management is Deployed on OCP4
 
 On the bastion host, use the `oc` tool to talk to the API and learn about the Metering Operator
 
@@ -199,6 +196,8 @@ $ ssh lab-user@<bastion>
 ----
 +
 The password is `rhte2019`
+
+. Become `ec2-user`, who setup the OCP4 cluster.
 +
 [source]
 ----
@@ -449,14 +448,19 @@ $ oc get reportqueries.metering.openshift.io
 $ oc get reportdatasources.metering.openshift.io
 ----
 
-== Connect OCP and HCCM
+== Connect OCP to Hybrid Cloud Cost Management
 
 NOTE: This is the fun part!
 
+To use the Cost Management website to add a source, you'll need to gather details of your OCP4 cluster and the uploader.
+
+=== Examine the Korekuta setup
+
 To upload data that the metering operator has collected into the Cost Management SaaS, we'll be using the Koku sub-project link:https://github.com/project-koku/korekuta[korekuta^].  Korekuta has several moving parts:
 
-.Korekuta components
-* Some custom reports for the reporting-operator in the metering-operator
+Korekuta components:
+
+* Custom reports added to the reporting-operator part of the metering-operator
 * Shell scripts to run the collector
 * Ansible playbooks to keep the shell scripts a sane length
 * Cronjobs to collect data periodically
@@ -479,12 +483,12 @@ $ cat $HOME/.config/ocp_usage/*/config.json
 ----
 {
     "ocp_api": "https://api.cluster-7371.7371.sandbox448.opentlc.com:6443", <1>
-    "ocp_token_file": "/home/ec2-user/7371.token", #<2>
-    "ocp_cluster_id": "a1d4986f-eb03-57a9-bd1d-2ed6a9af4da0", #<3>
-    "ocp_metering_namespace": "openshift-metering", #<4>
-    "ocp_cli": "/usr/bin/oc", #<5>
-    "ocp_validate_cert": "False", #<6>
-    "metering_api": "https://metering-openshift-metering.apps.cluster-7371.7371.sandbox448.opentlc.com" #<7>
+    "ocp_token_file": "/home/ec2-user/7371.token", <2>
+    "ocp_cluster_id": "a1d4986f-eb03-57a9-bd1d-2ed6a9af4da0", <3>
+    "ocp_metering_namespace": "openshift-metering", <4>
+    "ocp_cli": "/usr/bin/oc", <5>
+    "ocp_validate_cert": "False", <6>
+    "metering_api": "https://metering-openshift-metering.apps.cluster-7371.7371.sandbox448.opentlc.com" <7>
 }
 ----
 <1> The `ocp_usage.sh` collector will access the OpenShift cluster through the API endpoing.  Get it with `oc whoami --show-server`
@@ -656,14 +660,16 @@ Senior Management wants to know:
 
 == Congratulations!
 
-This breakout has shown you the basics of the Cost Management system.  It covered the infrastructure setup and basic use of the product.
+This lab has shown you the basics of the Cost Management system.  It covered the infrastructure setup and basic use of the product.
 
 Don't forget to register your attendance in the app!!
 
+////
 [CAUTION] 
 *Come to the Hack-a-thon on Thursday!*  If you are interested in the sample data cleaned up and want to work with it, we'll be featuring it there.  
 
 WARNING:  Also!  *Do you want to Keep your cluster alive until Thursday?*  If you want to continue working withy your live cluster after this Breakout, see Judd and tell him your GUID.  He'll make sure your cluster is not retired, and you can use it until after the Hack-a-thon on Thursday.
+////
 
 NOTE: Remember, you can learn a lot more about Cost Management in the docs and blog posts indicated at the top of this document.
 
