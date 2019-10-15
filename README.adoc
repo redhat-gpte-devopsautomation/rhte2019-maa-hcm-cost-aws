@@ -534,7 +534,7 @@ image:11_cost_add_source_button.png[]
 .. *Type*: Select "*Red Hat OpenShift Container Platform*"
 .. Click both the checkboxes.  They're already setup.
 * [*] On your OpenShift cluster, install:
-* [*] On a system with network access t your OpenShift cluster, install:
+* [*] On a system with network access to your OpenShift cluster, install:
 .. Click *Next*
 +++ <details><summary> +++
 _Sample Image_
@@ -642,14 +642,14 @@ Three "workload" projects were deployed on the clusters.  They are the basis of 
 
 * *Scroll Down* and observe the AWS resource utilization and the actual resource usage of all OCP projects compared to the resources requested by all OCP projects.
 
-* On the left, click on *OpenShift on cloud details* and in the list of projects that opens, click the to open the first project name (usually "analytics") on the list.  Note how it identifies a single cluster and the spending per region of the projects.
+* On the left, click on *OpenShift on cloud details* and in the list of projects that opens, click the arrow next to the first project name (usually "analytics") on the list to open it.  Note how it identifies a single cluster and the spending per region of the projects.
 
 * Continue working with the Cost Management GUI to try to answer the following questions:
 
 
 == Business Analysis Scenario
 
-NOTE: Note that this data is in some parts matched incorrecgly and faulty just for today, Tuesday's breakout, and can produce strange results. 
+NOTE: Note that this data is in some parts matched incorrectly and faulty just for today, Tuesday's breakout, and can produce strange results. 
 
 Senior Management wants to know:
 
@@ -668,7 +668,7 @@ Don't forget to register your attendance in the app!!
 [CAUTION] 
 *Come to the Hack-a-thon on Thursday!*  If you are interested in the sample data cleaned up and want to work with it, we'll be featuring it there.  
 
-WARNING:  Also!  *Do you want to Keep your cluster alive until Thursday?*  If you want to continue working withy your live cluster after this Breakout, see Judd and tell him your GUID.  He'll make sure your cluster is not retired, and you can use it until after the Hack-a-thon on Thursday.
+WARNING:  Also!  *Do you want to Keep your cluster alive until Thursday?*  If you want to continue working with your live cluster after this Breakout, see Judd and tell him your GUID.  He'll make sure your cluster is not retired, and you can use it until after the Hack-a-thon on Thursday.
 ////
 
 NOTE: Remember, you can learn a lot more about Cost Management in the docs and blog posts indicated at the top of this document.
