@@ -169,7 +169,7 @@ _Click for Sample Image_
 image:09_cost_aws_source_added.png[]
 +++ </div></details> +++
 
-. Within a few hours, the cloud tags would appear in the HCCM "Cloud Details" GUI.  You can then group your costs by these tags and begin getting insights into the cost of your business initiatives. link:https://cloud.redhat.com/hybrid/cost-management/aws?group_by[account]=*&order_by[cost]=desc
+. Within a few hours, the cloud tags would appear in the HCCM "Cloud Details" GUI.  You can then group your costs by these tags and begin getting insights into the cost of your business initiatives. link:https://cloud.redhat.com/beta/hybrid/cost-management/aws?group_by[account]=*&order_by[cost]=desc
 +
 +++ <details><summary> +++
 _Click for Sample Image_
@@ -517,11 +517,11 @@ $ crontab -l
 
 === Add the OCP Cluster to Cost Management through the GUI
 
-. Navigate to link:https://cloud.redhat.com/hybrid/cost-management/sources[^]
+. Navigate to link:https://cloud.redhat.com/beta/hybrid/cost-management/sources[^]
 
 . Sign in as username `rhte-example-1` password `r3dh4t1!`
 
-NOTE: You may have to again go to link:https://cloud.redhat.com/hybrid/cost-management/sources[^]
+NOTE: You may have to again go to link:https://cloud.redhat.com/beta/hybrid/cost-management/sources[^]
 
 . Click *Add Source*
 +++ <details><summary> +++
@@ -556,7 +556,7 @@ image:13_cost_ocp_cluster_id.png[]
 
 . Confirm the status details and click *Add Source*
 
-. You will eventually see your cluster in the list of link:https://cloud.redhat.com/hybrid/cost-management/[*Top Clusters*^] or click on *All Clusters* to find yours.
+. You will eventually see your cluster in the list of link:https://cloud.redhat.com/beta/hybrid/cost-management/[*Top Clusters*^] or click on *All Clusters* to find yours.
 +++ <details><summary> +++
 _Sample Image_
 +++ </summary><div> +++
@@ -622,7 +622,7 @@ Three "workload" projects were deployed on the clusters.  They are the basis of 
 
 * Log into the Sample Data Account
 
-. Navigate to link:https://cloud.redhat.com/hybrid/cost-management/sources/[^]
+. Navigate to link:https://cloud.redhat.com/beta/hybrid/cost-management/sources/[^]
 
 . Log OUT of the previous user.
 
