@@ -41,7 +41,7 @@ Hybrid Cloud Cost Managment is in the *BETA* state.  Not all features are expect
 
 [NOTE]
 *OCP Usage Data Upload*
-Upon General Availability, HCCM will upload usage data via the separate project OpenShift Telemetry (link:https://docs.openshift.com/container-platform/4.1/telemetry/about-telemetry.html[OpenShift Telemetry^]).  Until the products are integrated and are GA, a sub-project called "katakura" is supplied by the Cost Management team to upload data from OpenShift to the HCCM SaaS.
+Upon General Availability, HCCM will upload usage data via the separate project OpenShift Telemetry (link:https://docs.openshift.com/container-platform/4.1/telemetry/about-telemetry.html[OpenShift Telemetry^]).  Until the products are integrated and are GA, a sub-project called "korekuta" is supplied by the Cost Management team to upload data from OpenShift to the HCCM SaaS.
 
 === Infrastructure and Accounts
 
@@ -53,7 +53,7 @@ Upon General Availability, HCCM will upload usage data via the separate project 
 ** Bastion SSH: user:`lab-user` password: `rhte2019`
 ** OCP 4 Installer - already complete
 ** OCP `oc` client - `system:admin` keys already set up
-** Cost Collector (sub-project "katakura") already installed and configured
+** Cost Collector (sub-project "korekuta") already installed and configured
 
 * Your AWS Sandbox Account
 ** CLI access ONLY (sorry)
